@@ -1,0 +1,7 @@
+ok    rover-scout: 12 blocos · 6 rodas · 63 encaixes por pino · 4 cavilhas · 6 eixos
+info  ASM-010  vão livre do chão: 8mm
+
+rover-scout: 128 × 72 × 68 mm
+  estruturais 12 · impressas 28 (cavilhas 4) · STLs únicos 11 · componentes 0 · pinos livres 0
+  resolução 9.4 peças/100mm · maior peça 112mm
+  dica: baixa resolução (9 peças/100mm; kit técnico fica em 15–40): aumente a escala ou quebre blocos grandes em vigas
