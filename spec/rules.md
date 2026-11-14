@@ -1,50 +1,105 @@
 # Regras do Sistema
 
-Regras de compatibilidade que toda peça e toda junção devem respeitar.
+Regras de compatibilidade que toda peça e toda junção devem respeitar. As premissas estão em [constitution.md](constitution.md); os valores em [params.md](params.md).
+
+---
 
 ## Lei do Grid
 
-> **O volume do grid é delimitado pelas faces internas das PLATEs. A espessura da PLATE vive sempre FORA do grid.**
+> **O volume do grid é delimitado pelas faces internas. Material de acabamento vive sempre FORA dele.**
 
 Consequências:
 
-1. **Superfície da base é plano do grid** — atoms assentam diretamente sobre ela; centro do atom fica a `cell_size/2` da superfície.
-2. **Parede perpendicular** assenta com a borda inferior sobre a superfície da base e a face interna num plano do grid; a espessura projeta para fora.
-3. **Primeiro furo de qualquer PLATE** fica a `cell_size/2` da borda → furos de parede ficam a `cell_size/2` acima da superfície da base → alinham com os furos laterais de um ATOM assentado na base.
-4. Nenhuma junção pode alterar o passo do grid (`cell_size`). Peças de junção (LINK, BRIDGE, CORNER) conectam furos existentes sem inserir espaçamento.
+1. **A superfície de apoio é plano do grid** — uma célula assenta diretamente sobre ela, e seu centro fica a `grid/2` da superfície
+2. **Parede perpendicular** assenta com a borda sobre a superfície e a face interna num plano do grid; a espessura projeta para fora
+3. **Nenhuma junção altera o passo.** Peças de junção conectam furos existentes sem inserir espaçamento
+4. **Pele é material fora do grid** — os furos continuam ancorados no reticulado; só o envelope cresce
 
-## Junção coplanar (lado a lado)
+Com pele, o volume de grid fica **deslocado** da face externa. Quem mata na face alinha pela **célula**, não pela face — igual ao que acontece ao redor de uma parede.
 
-Duas PLATEs encostadas borda a borda: furos de face ficam a `cell_size/2` de cada lado da junção → distância entre furos através da junção = `cell_size`. O grid se preserva automaticamente. Travamento **invisível** via dowels [BRIDGE](parts/bridge.md) na interface de borda (2 por junção) — faces 100% livres, ATOM assenta sobre a junção.
+---
 
-## Interface de borda
+## A interface é uma só
 
-Segunda interface do sistema, nas bordas de PLATEs e faces laterais de ATOMs — complementa os furos de face sem competir com eles. Interface pura pino → furo, sem rebaixos:
+Não existem mais duas interfaces competindo. Existe **um furo**, no centro de cada célula, em cada eixo `bored`.
 
-- Furos de borda: `edge_hole_d = 3mm`, profundidade `4mm`, centrados na espessura
-- 2 por célula, **nas extremidades**: a `edge_inset = 2.5mm` (= `thickness/2`) de cada limite da célula
-- Distâncias: `15mm` dentro da célula; `5mm` através de junções — cada furo alinha com o centro da seção do CORNER (`5/2 = 2.5mm`)
-- ATOM: 4 furos por face lateral (2 embaixo + 2 em cima), mesmas posições → PLATE ao lado de ATOM conecta direto
-- **Rebaixo do colar**: boca de todo furo de borda ganha rebaixo `Ø3.8 × 1mm` (`edge_collar_w = 0.4` radial); todo pino tem colar `Ø3.6 × 1mm` na raiz → trava de profundidade (dowel divide 50/50, pino não afunda) e reforço da raiz
-- Pinos receptores: `edge_hole_d - tolerance = 2.8mm`
-- Usada por: [BRIDGE](parts/bridge.md) (dowel de junção coplanar), [CORNER](parts/corner.md) (junção 90° e L de corners), [PIN](parts/pin.md) (viga conectora configurável), [ELBOW](parts/elbow.md) (curva 90° arredondada), [VERTEX](parts/vertex.md) (quina 3-vias com ponta arredondada)
+| | |
+| --- | --- |
+| Reticulado | centro de célula — `i·grid + grid/2` |
+| Furo | `Ø hole_d`, **passante** ao longo do eixo |
+| Boca | rebaixo `Ø recess_d × collar_depth`, quando a face é `recess` |
+| Macho | colar `Ø collar_d × collar_depth` + haste `Ø pin_d`, total `pin_len` |
 
-Vantagem estrutural: junções por borda deixam furos de face e rebaixos 100% livres — LINK e ATOM conectam em qualquer célula, inclusive nas do canto.
+Isso substitui a divisão antiga entre interface de face (`Ø10`) e de borda (`Ø3`). O que era "interface macro" virou o **recurso central** — mesma geometria, outra escala, e uma abstração de leitura em vez de um segundo contrato.
 
-## Junção perpendicular (90°)
+### Furos se cruzam por projeto
 
-Base e parede se encontram borda-com-borda, deixando uma lacuna de `thickness × thickness` no canto externo. A viga [CORNER](parts/corner.md) preenche essa lacuna e pina nos furos de borda das duas PLATEs — nada protrui, interior 100% livre. Alternativa zero-peças: ATOM na célula do canto + 2 LINKs (custo: célula ocupada).
+Os três eixos passam pelo centro da célula, então os furos se cruzam ali. Não é defeito: é o que dá a passagem de fio e o que limita `pin_len` (premissa 5).
 
-Verificação canônica — U (`|_|`) com base de `n` células e duas paredes: interior = exatamente `n` células livres; um ATOM entra em qualquer célula e conecta na base e nas paredes.
+O material que sobra numa célula toda vazada é a **gaiola das 12 arestas**, de seção `(grid − hole_d)/2` = `2.0mm`.
+
+---
+
+## Junções
+
+### Coplanar — lado a lado
+
+Duas peças encostadas: os furos ficam a `grid/2` de cada lado da emenda, então distam `grid` através dela. O grid se preserva sozinho.
+
+Travamento por **cavilha** — um macho de duas pontas dividido entre os dois furos, com o colar assentando nos dois rebaixos. Nada protrui.
+
+### Perpendicular — 90°
+
+Duas peças a 90° deixam uma lacuna no canto externo. A curva de `90°` preenche e pina nos dois furos.
+
+### Diagonal — ângulo livre
+
+Uma diagonal entre dois pontos do grid tem comprimento `Δ·√2` (ou `√(a²+b²)·grid`), que **quase nunca** é múltiplo do passo.
+
+Duas saídas:
+
+| | Restrição |
+| --- | --- |
+| **Viga de comprimento livre** | as duas **pontas** devem cair em furo existente; o comprimento é livre |
+| **Viga de comprimento inteiro** | só ângulos de terno pitagórico fecham — o prático é `3-4-5` → `53.13°` |
+
+**45° é exatamente o ângulo que não fecha** com viga inteira: `grid·√2` contra `grid` é irracional.
+
+A curva aceita qualquer ângulo, mas só o pitagórico devolve a diagonal ao reticulado.
+
+---
+
+## Recurso central
+
+Um furo ou macho maior no centro de um bloco `N×N`. O bloco mínimo é consequência do tamanho.
+
+Dois limites, e **o menor manda**:
+
+| Limite | Fórmula |
+| --- | --- |
+| Material | `center_recess/2 + recess_d/2 + wall ≤ dist(centro, furo vizinho)` |
+| **Montagem** | `center_recess/2 + (grid/2)·√2 ≤ dist(centro, furo vizinho)` |
+
+O de montagem manda quase sempre, e é o que se esquece: uma peça encaixada no furo vizinho **ocupa espaço acima da face**. A quina dela avança `(grid/2)·√2` a partir do próprio centro.
+
+Continuidade de material não basta. Uma chapa pode estar geometricamente correta e mesmo assim não aceitar a peça vizinha.
+
+O recurso engole os furos que alcança **por filtro de distância** — não há lista fixa a manter.
+
+---
 
 ## Passagem elétrica
 
-Todo conector (LINK, BRIDGE, CORNER) tem canal axial `canal_d = 6mm` por padrão em cada ponta de encaixe — fio/jumper atravessa qualquer junção. `canal_d = 0` fecha o canal (opt-out, nunca default).
+Todo eixo `bored` é canal. Um macho é vazado sempre que `pin_d − 2·wall ≥ 2.5mm` (jumper Dupont).
 
-## Furos laterais em PLATE
+Na escala atual o macho micro é **maciço** — `3.8 − 3.2 = 0.6mm`, abaixo do mínimo útil. O canal existe no corpo das peças, não no conector.
 
-Impossíveis por construção: `hole_d (10mm) > thickness (5mm)`. Toda junção envolvendo PLATE usa os furos das faces (topo/base) — os rebaixos existem em ambas as faces exatamente por isso.
+Macho num eixo `bored` **tampa** aquela boca. Para o canal sair inteiro, use `recess` ou `plain` nas duas pontas.
+
+---
 
 ## Tolerância
 
-`tolerance = 0.2mm` subtraída de todo pino e flange para press-fit. Ajuste por impressora: aumentar se apertar, diminuir se folgar.
+`tolerance` é subtraída sempre do **conector**, nunca da peça receptora — receptoras são nominais.
+
+O ajuste por impressora acontece no conector: peça pequena, reimpressão barata. E quem retém não é a haste, é o **colar** — `Ø collar_d` em `Ø recess_d`, com `tolerance` de folga diametral.
