@@ -1,0 +1,36 @@
+# GERADO por gen.py — edite o gerador, não este arquivo.
+
+[assembly]
+name = "t4-portico"
+view_angle = 35
+intent = "Corpo de prova: anel de base com curvas + dois pórticos curvos (poste, curva, travessa, curva, poste) unidos por cumeeiras"
+
+parts = [
+  { id = "vb-b", type = "brick", at = [2, 0, 0], size = [6, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "vd-b", type = "brick", at = [9, 2, 0], size = [1, 6, 1], color = [0.11, 0.11, 0.12] },
+  { id = "vt-b", type = "brick", at = [2, 9, 0], size = [6, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "ve-b", type = "brick", at = [0, 2, 0], size = [1, 6, 1], color = [0.11, 0.11, 0.12] },
+  { id = "cBD-b", type = "curve", at = [8, 0, 0], dir = [1, 0, 0], turn = [0, 1, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "cTD-b", type = "curve", at = [9, 8, 0], dir = [0, 1, 0], turn = [-1, 0, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "cTE-b", type = "curve", at = [1, 9, 0], dir = [-1, 0, 0], turn = [0, -1, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "cBE-b", type = "curve", at = [0, 1, 0], dir = [0, -1, 0], turn = [1, 0, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "pe-f", type = "brick", at = [2, 0, 1], size = [1, 1, 5], color = [0.62, 0.63, 0.66] },
+  { id = "pd-f", type = "brick", at = [7, 0, 1], size = [1, 1, 5], color = [0.62, 0.63, 0.66] },
+  { id = "ce-f", type = "curve", at = [2, 0, 6], dir = [0, 0, 1], turn = [1, 0, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "tr-f", type = "brick", at = [4, 0, 7], size = [2, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "cd-f", type = "curve", at = [6, 0, 7], dir = [1, 0, 0], turn = [0, 0, -1], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "pe-t", type = "brick", at = [2, 9, 1], size = [1, 1, 5], color = [0.62, 0.63, 0.66] },
+  { id = "pd-t", type = "brick", at = [7, 9, 1], size = [1, 1, 5], color = [0.62, 0.63, 0.66] },
+  { id = "ce-t", type = "curve", at = [2, 9, 6], dir = [0, 0, 1], turn = [1, 0, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "tr-t", type = "brick", at = [4, 9, 7], size = [2, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "cd-t", type = "curve", at = [6, 9, 7], dir = [1, 0, 0], turn = [0, 0, -1], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "cum0", type = "brick", at = [4, 1, 7], size = [1, 8, 1], color = [0.9, 0.9, 0.88] },
+  { id = "cum1", type = "brick", at = [5, 1, 7], size = [1, 8, 1], color = [0.9, 0.9, 0.88] },
+]
+
+groups = [
+  { id = "base", parts = ["vb-b", "vd-b", "vt-b", "ve-b", "cBD-b", "cTD-b", "cTE-b", "cBE-b"], note = "anel de base" },
+  { id = "portico-f", parts = ["pe-f", "pd-f", "ce-f", "tr-f", "cd-f"], note = "pórtico da frente" },
+  { id = "portico-t", parts = ["pe-t", "pd-t", "ce-t", "tr-t", "cd-t"], note = "pórtico de trás" },
+  { id = "cumeeira", parts = ["cum0", "cum1"], note = "vigas Y ligam as duas travessas" },
+]

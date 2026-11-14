@@ -1,0 +1,18 @@
+ok    t2-cubo-liftarm: 16 blocos · 0 rodas · 0 encaixes por pino · 28 cavilhas · 0 eixos
+AVISO ASM-012  y0-1: precisaria entrar em −z, +z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  y1-1: precisaria entrar em −z, +z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  y0-3: precisaria entrar em −z, +z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  y1-3: precisaria entrar em −z, +z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  y0-5: precisaria entrar em −z, +z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  y1-5: precisaria entrar em −z, +z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+
+t2-cubo-liftarm: 64 × 64 × 64 mm
+  estruturais 16 · impressas 44 (cavilhas 28) · STLs únicos 2 · componentes 0 · pinos livres 0
+  resolução 25.0 peças/100mm · maior peça 64mm
+  dica: 28/44 das peças impressas são cavilhas: use dowel_every = 3, pinos impressos (studs) onde não há ponta redonda, ou contatos mais curtos

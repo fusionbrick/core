@@ -1,0 +1,30 @@
+# GERADO por gen.py — edite o gerador, não este arquivo.
+
+[assembly]
+name = "t2-cubo-liftarm"
+view_angle = 35
+intent = "Corpo de prova: cubo 8×8×8 de vigas de ponta redonda empilhadas em camadas alternadas X/Y, cavilhas verticais nos cantos"
+
+parts = [
+  { id = "x0-0", type = "brick", at = [0, 0, 0], size = [8, 1, 1], color = [0.11, 0.11, 0.12], rounded = "z", corner_r = 4.0 },
+  { id = "x1-0", type = "brick", at = [0, 7, 0], size = [8, 1, 1], color = [0.11, 0.11, 0.12], rounded = "z", corner_r = 4.0 },
+  { id = "y0-1", type = "brick", at = [0, 0, 1], size = [1, 8, 1], color = [0.97, 0.47, 0.1], rounded = "z", corner_r = 4.0 },
+  { id = "y1-1", type = "brick", at = [7, 0, 1], size = [1, 8, 1], color = [0.97, 0.47, 0.1], rounded = "z", corner_r = 4.0 },
+  { id = "x0-2", type = "brick", at = [0, 0, 2], size = [8, 1, 1], color = [0.11, 0.11, 0.12], rounded = "z", corner_r = 4.0 },
+  { id = "x1-2", type = "brick", at = [0, 7, 2], size = [8, 1, 1], color = [0.11, 0.11, 0.12], rounded = "z", corner_r = 4.0 },
+  { id = "y0-3", type = "brick", at = [0, 0, 3], size = [1, 8, 1], color = [0.97, 0.47, 0.1], rounded = "z", corner_r = 4.0 },
+  { id = "y1-3", type = "brick", at = [7, 0, 3], size = [1, 8, 1], color = [0.97, 0.47, 0.1], rounded = "z", corner_r = 4.0 },
+  { id = "x0-4", type = "brick", at = [0, 0, 4], size = [8, 1, 1], color = [0.11, 0.11, 0.12], rounded = "z", corner_r = 4.0 },
+  { id = "x1-4", type = "brick", at = [0, 7, 4], size = [8, 1, 1], color = [0.11, 0.11, 0.12], rounded = "z", corner_r = 4.0 },
+  { id = "y0-5", type = "brick", at = [0, 0, 5], size = [1, 8, 1], color = [0.97, 0.47, 0.1], rounded = "z", corner_r = 4.0 },
+  { id = "y1-5", type = "brick", at = [7, 0, 5], size = [1, 8, 1], color = [0.97, 0.47, 0.1], rounded = "z", corner_r = 4.0 },
+  { id = "x0-6", type = "brick", at = [0, 0, 6], size = [8, 1, 1], color = [0.11, 0.11, 0.12], rounded = "z", corner_r = 4.0 },
+  { id = "x1-6", type = "brick", at = [0, 7, 6], size = [8, 1, 1], color = [0.11, 0.11, 0.12], rounded = "z", corner_r = 4.0 },
+  { id = "y0-7", type = "brick", at = [0, 0, 7], size = [1, 8, 1], color = [0.97, 0.47, 0.1], rounded = "z", corner_r = 4.0 },
+  { id = "y1-7", type = "brick", at = [7, 0, 7], size = [1, 8, 1], color = [0.97, 0.47, 0.1], rounded = "z", corner_r = 4.0 },
+]
+
+groups = [
+  { id = "camadas-x", parts = ["x0-0", "x1-0", "x0-2", "x1-2", "x0-4", "x1-4", "x0-6", "x1-6"], note = "camadas pares: vigas em X" },
+  { id = "camadas-y", parts = ["y0-1", "y1-1", "y0-3", "y1-3", "y0-5", "y1-5", "y0-7", "y1-7"], note = "camadas ímpares: vigas em Y" },
+]

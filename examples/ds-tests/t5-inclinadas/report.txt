@@ -1,0 +1,34 @@
+ok    t5-inclinadas: 21 blocos · 0 rodas · 8 nós · 4 vigas · 3 curvas · 16 encaixes por pino · 31 cavilhas · 0 eixos
+AVISO ASM-012  trav0: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trav1: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trav2: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trav3: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  S-poste2: precisaria entrar em −z, +z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  d-apoio0: precisaria entrar em −x, +x ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  d-apoio1: precisaria entrar em −x, +x ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  U-b: precisaria entrar em +y, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  d-poste: precisaria entrar em −z, +z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+info  ASM-004  trav0: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  trav1: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  r-diag: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  s-diag: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  p-diag: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  d-diag: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  S-poste: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  S-meio: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  S-topo: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  S-poste2: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+
+t5-inclinadas: 192 × 88 × 72 mm
+  estruturais 36 · impressas 67 (cavilhas 31) · STLs únicos 23 · componentes 0 · pinos livres 0
+  resolução 18.8 peças/100mm · maior peça 192mm
+  sem alertas de qualidade

@@ -1,0 +1,55 @@
+# GERADO por gen.py — edite o gerador, não este arquivo.
+
+[assembly]
+name = "t5-inclinadas"
+view_angle = 215
+intent = "Corpo de prova: vigas inclinadas por ternos pitagóricos (3-4-5, 5-12-13, 6-8-10 no plano, 2-3-6 em 3D) e vigas dobradas por BEND (S e grampo 180°)"
+
+parts = [
+  { id = "long0", type = "brick", at = [0, 0, 0], size = [24, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "long1", type = "brick", at = [0, 10, 0], size = [24, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "trav0", type = "brick", at = [0, 1, 0], size = [1, 9, 1], color = [0.62, 0.63, 0.66] },
+  { id = "trav1", type = "brick", at = [8, 1, 0], size = [1, 9, 1], color = [0.62, 0.63, 0.66] },
+  { id = "trav2", type = "brick", at = [16, 1, 0], size = [1, 9, 1], color = [0.62, 0.63, 0.66] },
+  { id = "trav3", type = "brick", at = [23, 1, 0], size = [1, 9, 1], color = [0.62, 0.63, 0.66] },
+  { id = "r-pe", type = "brick", at = [1, 0, 1], size = [1, 1, 1], color = [0.62, 0.63, 0.66] },
+  { id = "r0", type = "node", at = [2, 0, 1], dirs = [[-1, 0, 0], [4, 0, 3]], color = [0.11, 0.11, 0.12] },
+  { id = "r1", type = "node", at = [6, 0, 4], dirs = [[-4, 0, -3], [1, 0, 0]], color = [0.11, 0.11, 0.12] },
+  { id = "r-diag", type = "strut", from = "r0", to = "r1", color = [0.97, 0.47, 0.1], style = "beam" },
+  { id = "r-poste", type = "brick", at = [7, 0, 1], size = [1, 1, 4], color = [0.62, 0.63, 0.66] },
+  { id = "s-pe", type = "brick", at = [1, 10, 1], size = [1, 1, 1], color = [0.62, 0.63, 0.66] },
+  { id = "s0", type = "node", at = [2, 10, 1], dirs = [[-1, 0, 0], [12, 0, 5]], color = [0.11, 0.11, 0.12] },
+  { id = "s1", type = "node", at = [14, 10, 6], dirs = [[-12, 0, -5], [1, 0, 0]], color = [0.11, 0.11, 0.12] },
+  { id = "s-diag", type = "strut", from = "s0", to = "s1", color = [0.2, 0.45, 0.85], style = "beam" },
+  { id = "s-poste", type = "brick", at = [15, 10, 1], size = [1, 1, 6], color = [0.62, 0.63, 0.66] },
+  { id = "p0", type = "node", at = [9, 1, 0], dirs = [[0, -1, 0], [6, 8, 0]], color = [0.11, 0.11, 0.12] },
+  { id = "p1", type = "node", at = [15, 9, 0], dirs = [[-6, -8, 0], [0, 1, 0]], color = [0.11, 0.11, 0.12] },
+  { id = "p-diag", type = "strut", from = "p0", to = "p1", color = [0.9, 0.9, 0.88], style = "beam" },
+  { id = "d-apoio0", type = "brick", at = [17, 2, 0], size = [6, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "d-apoio1", type = "brick", at = [17, 8, 0], size = [6, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "d0", type = "node", at = [17, 2, 1], dirs = [[0, 0, -1], [2, 3, 6]], color = [0.11, 0.11, 0.12] },
+  { id = "d1", type = "node", at = [19, 5, 7], dirs = [[-2, -3, -6], [0, 0, 1]], color = [0.11, 0.11, 0.12] },
+  { id = "d-diag", type = "strut", from = "d0", to = "d1", color = [0.97, 0.47, 0.1], style = "beam" },
+  { id = "d-teto", type = "brick", at = [19, 5, 8], size = [1, 4, 1], color = [0.11, 0.11, 0.12] },
+  { id = "d-poste", type = "brick", at = [19, 8, 1], size = [1, 1, 7], color = [0.62, 0.63, 0.66] },
+  { id = "S-poste", type = "brick", at = [9, 0, 1], size = [1, 1, 2], color = [0.62, 0.63, 0.66] },
+  { id = "S-c1", type = "curve", at = [9, 0, 3], dir = [0, 0, 1], turn = [1, 0, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "S-meio", type = "brick", at = [11, 0, 4], size = [2, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "S-c2", type = "curve", at = [13, 0, 4], dir = [1, 0, 0], turn = [0, 0, 1], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "S-topo", type = "brick", at = [14, 0, 6], size = [1, 1, 1], color = [0.62, 0.63, 0.66] },
+  { id = "S-alto", type = "brick", at = [14, 0, 7], size = [6, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "S-poste2", type = "brick", at = [19, 0, 1], size = [1, 1, 6], color = [0.62, 0.63, 0.66] },
+  { id = "U-a", type = "brick", at = [16, 4, 1], size = [5, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "U-c", type = "curve", at = [21, 4, 1], dir = [1, 0, 0], turn = [0, 1, 0], radius = 2, angle = 180, color = [0.97, 0.47, 0.1] },
+  { id = "U-b", type = "brick", at = [16, 7, 1], size = [5, 1, 1], color = [0.11, 0.11, 0.12] },
+]
+
+groups = [
+  { id = "base", parts = ["long0", "long1", "trav0", "trav1", "trav2", "trav3"], note = "chassi de prova" },
+  { id = "rampa", parts = ["r-pe", "r0", "r1", "r-diag", "r-poste"], note = "3-4-5" },
+  { id = "suave", parts = ["s-pe", "s0", "s1", "s-diag", "s-poste"], note = "5-12-13" },
+  { id = "plano", parts = ["p0", "p1", "p-diag"], note = "6-8-10 no chão" },
+  { id = "3d", parts = ["d-apoio0", "d-apoio1", "d0", "d1", "d-diag", "d-teto", "d-poste"], note = "2-3-6 nos dois planos" },
+  { id = "dobra", parts = ["S-poste", "S-c1", "S-meio", "S-c2", "S-topo", "S-alto", "S-poste2"], note = "S com duas curvas" },
+  { id = "grampo", parts = ["U-a", "U-c", "U-b"], note = "retorno 180°" },
+]

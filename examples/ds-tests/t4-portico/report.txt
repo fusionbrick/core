@@ -1,0 +1,16 @@
+ok    t4-portico: 12 blocos · 0 rodas · 8 curvas · 0 encaixes por pino · 32 cavilhas · 0 eixos
+AVISO ASM-012  cum0: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  cum1: precisaria entrar em −x, −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+info  ASM-004  vd-b: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  ve-b: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pe-f: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pd-f: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pe-t: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pd-t: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+
+t4-portico: 80 × 80 × 64 mm
+  estruturais 20 · impressas 52 (cavilhas 32) · STLs únicos 6 · componentes 0 · pinos livres 0
+  resolução 25.0 peças/100mm · maior peça 64mm
+  dica: 32/52 das peças impressas são cavilhas: use dowel_every = 3, pinos impressos (studs) onde não há ponta redonda, ou contatos mais curtos
