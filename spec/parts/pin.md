@@ -1,36 +1,53 @@
 # PIN
 
-Viga conectora universal da interface de borda. Parente do [CORNER](corner.md), mas totalmente configurável: cada grupo de faces (topo, base, laterais, pontas) pode ter **pino**, **furo** ou nada.
+O único macho solto do sistema. Une dois furos, em qualquer escala.
+
+Absorve BRIDGE (cavilha de duas pontas), LINK (conector de face) e LINK-ONESIDE — os três eram o mesmo objeto em tamanhos diferentes.
+
+> **Nota de nomenclatura:** até a v1, `PIN` era o nome da viga. A viga virou [BRICK](brick.md) `1×1×n`, e o nome passou para o macho, que é o que ele descreve.
+
+Modelo e valores: [constitution.md](../constitution.md) · [params.md](../params.md).
 
 ## Geometria
 
-- **Corpo**: prisma `sec_w × sec_h × (cells × cell_size)` — padrão `5 × 5 × 20mm` (seção = espessura da PLATE)
-- **Posições**: nas extremidades de cada célula, a `edge_inset = 2.5mm` dos limites — mesmas posições de toda a interface de borda
-- **Pino**: colar `Ø3.6 × 1mm` na raiz + haste `Ø2.8`, total `3.5mm`
-- **Furo**: bore `Ø3 × 4mm` + rebaixo do colar `Ø3.8 × 1mm` na boca
-- Pontas (±Y): 1 feature axial centrado na seção
-- **Acabamento**: `border_radius` (padrão `0`) + `border_style` `round`/`chamfer` nas arestas da viga
-- Furos opostos se encontram (4+4 > 5) e viram furo passante — esperado
+Colar na raiz + haste. Nesta ordem, a partir da face:
 
-## Configuração
-
-| Grupo | Parâmetro | Opções |
+| Trecho | Extensão | Diâmetro |
 | --- | --- | --- |
-| Topo (+Z) | `face_top` | `pin` / `hole` / `none` |
-| Base (−Z) | `face_bottom` | `pin` / `hole` / `none` |
-| Laterais (±X) | `face_sides` | `pin` / `hole` / `none` |
-| Pontas (±Y) | `face_ends` | `pin` / `hole` / `none` |
+| Colar | `0` … `collar_depth` | `collar_d` |
+| Haste | `collar_depth` … `pin_len` | `pin_d` |
 
-## Presets
+`pin_len` é a protrusão **total** — o colar não soma, ele é o primeiro trecho dela.
 
-| `preset` | Topo | Base | Laterais | Pontas | Uso |
-| --- | --- | --- | --- | --- | --- |
-| `full_pins_hole_bottom` | pino | furo | pino | pino | espalhar conexões a partir de uma base |
-| `full_holes` | furo | furo | furo | furo | hub fêmea universal — recebe pinos de qualquer peça |
-| `custom` (padrão) | `face_*` | `face_*` | `face_*` | `face_*` | qualquer combinação |
+Na escala micro isso dá `2.0mm` de protrusão, dos quais `1.0mm` é colar e `1.0mm` é haste. **Quem retém é o colar**, assentando no rebaixo com `tolerance` de folga diametral. A haste alinha.
 
-## Compatibilidade
+## Variantes
 
-- Pinos entram em qualquer furo de borda do sistema (PLATE, ATOM, CORNER via canal, outro PIN)
-- Furos recebem pinos de CORNER, dowels de BRIDGE e pinos de outro PIN
-- Encaixe em L igual ao CORNER: feature da ponta fica no centro da seção
+| Parâmetro | Padrão | O que muda |
+| --- | --- | --- |
+| `ends` | `2` | `1` = macho de uma ponta · `2` = cavilha, metade em cada furo |
+| `size` | `hole_d` do sistema | diâmetro do furo receptor — define toda a escala |
+| `spacer` | `0` | afastamento entre as duas pontas |
+| `lead_in` | chanfro de entrada | facilita iniciar o encaixe |
+
+`size` é o que unifica as escalas: um PIN para o furo padrão e um PIN para o recurso central são a mesma peça com `size` diferente. Todas as cotas derivam dele pelas fórmulas de [params.md](../params.md).
+
+## Comprimento é contrato, não escolha
+
+`pin_len` **não é parâmetro da peça**. Ele vale para o sistema inteiro.
+
+Um macho mais longo entraria fundo demais numa célula que espera `2.0mm` e colidiria com o pino perpendicular *dela*, quebrando o encaixe simultâneo (premissa 5) da peça receptora. Comprimento variável por peça quebra a compatibilidade permanente.
+
+Onde o macho é mais longo é no `spacer` — que afasta as duas pontas sem alterar quanto cada uma entra.
+
+## Canal de fio
+
+Vazado sempre que `size − tolerance − 2·wall ≥ 2.5mm`.
+
+Na escala micro sobram `0.6mm` — abaixo do mínimo útil, então o macho micro é **maciço**. O canal existe no corpo das peças, não no conector. Em escalas maiores o PIN é vazado.
+
+## Verificações
+
+- `pin_len` igual ao valor do sistema — nunca sobrescrito por peça
+- Duas pontas num furo passante compartilhado: `2 · pin_len ≤ grid − gap`
+- Canal só existe se passar do mínimo útil
