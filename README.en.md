@@ -70,7 +70,7 @@ tolerance     = 0.2mm  // print fit tolerance
 canal_d       = 6mm    // wire channel in every connector (0 = solid)
 ```
 
-System premises: [spec/design-system.md](spec/design-system.md) · Grid Law and joints: [spec/rules.md](spec/rules.md).
+System premises: [spec/constitution.md](spec/constitution.md) · Grid Law and joints: [spec/rules.md](spec/rules.md).
 
 > **Compatibility rule:** if `cell_size`, `hole_d` and `relief_*` are equal across pieces, all holes align perfectly — no matter which pieces you combine.
 
@@ -111,12 +111,65 @@ Pre-built STL files are available in the `renders/stl/` folder.
 
 ---
 
+## Assembly by description
+
+Assemblies are not drawn: they are **described** in `examples/<name>/assembly.toml` — which parts occupy which cells — and **compiled**. The compiler inserts every dowel, validates fit by the rules in [`spec/assembly.md`](spec/assembly.md) and generates the `.scad`, the STLs (one per unique configuration), the bill of materials and the build steps. This is what lets an AI build prototypes from text or images (skill `fusionbrick-assembly`).
+
+Whoever builds uses a short vocabulary, one name per concept:
+
+| Part (`type`) | What it is |
+| --- | --- |
+| `brick` | the base part: any size, with the holes and connectors you choose |
+| `beam` | a holed bar with rounded ends |
+| `plate` | a thin holed sheet, for floors and bases |
+| `cover` | a smooth sheet that closes the top |
+| `curve` | a beam that turns 90° or 180° |
+| `strut` | a slanted beam between two points; the end nodes are created for you |
+| `wheel` | a wheel, axle included |
+| `component` | what you buy ready-made: battery, board, motor, wire |
+
+Beam, plate and cover are the BRICK with defaults already chosen; any field written on the part overrides the default, so full parametric control is still there.
+
+| Connector | | Face (front = +X) | |
+| --- | --- | --- | --- |
+| `stud` | a pin printed on the part | `front` · `back` | +X · −X |
+| `socket` | a recess that receives a pin | `left` · `right` | +Y · −Y |
+| `flat` | a plain face | `top` · `bottom` | +Z · −Z |
+
+Two facing `socket`s get a **dowel** (the two-ended PIN), which the compiler adds by itself.
+
+```toml
+parts = [
+  { id = "base",  type = "brick",     at = [0, 0, 0], size = [10, 6, 1] },
+  { id = "rail",   type = "beam",      at = [0, 0, 1], size = [10, 1, 1], studs = "bottom" },
+  { id = "foot",    type = "brick",     at = [1, 5, 1], size = [1, 1, 1] },
+  { id = "ramp", type = "strut",     from = [2, 5, 1], to = [6, 5, 4] },      # 3-4-5 slope
+  { id = "post", type = "brick",     at = [7, 5, 1], size = [1, 1, 4] },
+  { id = "wheel",  type = "wheel",     at = [2, -1, 1], on = "rail.right", diameter = 4 },
+  { id = "bat",   type = "component", at = [3, 1, 1], size_mm = [48.5, 26.5, 17.5], label = "9V" },
+]
+```
+
+The OpenSCAD part parameters (`cells_x`, `face_zn = "pin"`…) did not change, and the older assembly names (`liftarm`, `bend`, `mock`, `cells`…) are still accepted. The bridge between the layers is in [`spec/assembly.md` § Nomes](spec/assembly.md#nomes).
+
+| `buggy-vt2` — from a photo, high resolution (99 parts) | `buggy-vt` — from a photo: cage with diagonals | `rover-tub` — 4×4, open bed | `rover-scout` — 6×6, slab deck |
+| --- | --- | --- | --- |
+| ![buggy-vt2](examples/buggy-vt2/assembly.png) | ![buggy-vt](examples/buggy-vt/assembly.png) | ![rover-tub](examples/rover-tub/assembly.png) | ![rover-scout](examples/rover-scout/assembly.png) |
+
+```bash
+make assemble-check NAME=rover-tub   # validates in milliseconds
+make assemble NAME=rover-tub         # STLs + .scad + BOM + steps + images
+make assemble-collide NAME=rover-tub # exact pairwise intersection (CGAL)
+```
+
+---
+
 ## Project Structure
 
 ```text
 FusionBrick/
 ├── spec/                    ← Generic specification (tech-agnostic)
-│   ├── design-system.md     ← System premises
+│   ├── constitution.md     ← System premises
 │   ├── params.md            ← Global parameters
 │   ├── rules.md             ← Grid Law, interfaces, joints
 │   └── parts/
@@ -160,7 +213,7 @@ FusionBrick/
 - [x] BRIDGE — invisible coplanar joint (dowels + buried web)
 - [x] CORNER — 90° corner beam with ribs and wire channel
 - [x] Wire channel by default in every connector
-- [x] Grid Law formalized (`spec/design-system.md`, `spec/rules.md`)
+- [x] Grid Law formalized (`spec/constitution.md`, `spec/rules.md`)
 - [x] `make assembly` — isometric assemblies with collision testing
 
 ### v0.3.0 — Parametric
