@@ -1,0 +1,85 @@
+ok    buggy-vt2: 69 blocos · 4 rodas · 4 nós · 2 vigas · 23 componentes · 342 encaixes por pino · 242 cavilhas · 4 eixos
+AVISO ASM-012  parachoque_t: precisaria entrar em +x, +z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trav0_x1: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trav0_x9: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat1b_e: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  parachoque_f: precisaria entrar em −x, +z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trav0_x17: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trav0_x25: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trav0_x32: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat1c_e: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat2b_e: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat2c_e: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  tras2: precisaria entrar em +x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat3b_e: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat3c_e: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  frente2: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  tras3: precisaria entrar em +x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat4b_e: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  frente3: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat4c_e: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  tras4: precisaria entrar em +x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trav4_x1: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trav4_x12: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  frente4: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trav4_x25: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trav4_x32: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat1b_d: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat1c_d: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat2b_d: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat2c_d: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat3b_d: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat3c_d: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat4b_d: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat4c_d: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  teto_tras: precisaria entrar em +x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  teto_frente: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+info  ASM-010  vão livre do chão: 36mm
+info  ASM-004  poste_x0_e: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_x9_e: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  coluna_a_e: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_x0_d: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_x9_d: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  coluna_a_d: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-011  658 pino(s) livre(s), prontos para receber peças
+
+buggy-vt2: 304 × 208 × 160 mm
+  estruturais 75 · impressas 325 (cavilhas 242) · STLs únicos 21 · componentes 23 · pinos livres 658
+  resolução 24.7 peças/100mm · maior peça 144mm
+  dica: 242/325 das peças impressas são cavilhas: suba dowel_every, pinos impressos (studs) onde não há ponta redonda, ou contatos mais curtos
+  dica: 658 pinos livres: use faces auto (cavilha só no contato) ou studs_on = "edge" nas placas

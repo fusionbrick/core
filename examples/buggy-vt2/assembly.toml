@@ -1,0 +1,139 @@
+# ============================================================
+# BUGGY V-T Mk2 — GERADO por gen.py (edite o gerador, não este arquivo)
+# ============================================================
+# Buggy off-road 4×4 da imagem de referência em alta resolução:
+# 288 × 208mm, rodas balão Ø112, ~90 peças estilo kit técnico.
+#
+# Vista lateral (X-Z), x = TRÁS → FRENTE:
+#
+#   z=14  ╭──────── teto bege (laje 4mm) ────────╮◉ farol
+#   z=13  ├─teto_tras──trilho───────────teto_frente●  nó alto (x=18)
+#         ┃poste        ┃poste                      ╲  coluna A
+#         ┃             ┃     [bateria]               ╲  9-12-15
+#   z=4   ▓▓▓ deck traseiro ▓▓▓        ▓▓ deck dianteiro ●▓ (x=30) ▌cam
+#   z=3   ═══ lateral ═══                   ═══ lateral ═══
+#   z=0..2  ═══ laterais em camadas · piso · travessas ═══ ▀▀ para-choque
+#          ( roda Ø112 )                ( roda Ø112 )
+#   x:  -2 0      6        9    14  18      24  27  30  34 36
+# ============================================================
+
+[assembly]
+name   = "buggy-vt2"
+dowel_every = 3
+view_angle = 125
+intent = "Buggy off-road 4×4 da imagem de referência em alta resolução: laterais em camadas de liftarms laranja, gaiola preta com colunas A diagonais, teto bege com faróis, bateria em suporte cinza, câmera e LEDs na frente, rodas balão"
+
+parts = [
+  { id = "lat0a_e", type = "brick", at = [0, 0, 0], size = [17, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat0b_e", type = "brick", at = [17, 0, 0], size = [17, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat1a_e", type = "brick", at = [0, 0, 1], size = [12, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat1b_e", type = "brick", at = [12, 0, 1], size = [12, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat1c_e", type = "brick", at = [24, 0, 1], size = [10, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat2a_e", type = "brick", at = [0, 0, 2], size = [14, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat2b_e", type = "brick", at = [14, 0, 2], size = [8, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat2c_e", type = "brick", at = [22, 0, 2], size = [12, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat3a_e", type = "brick", at = [0, 0, 3], size = [10, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat3b_e", type = "brick", at = [10, 0, 3], size = [10, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat3c_e", type = "brick", at = [20, 0, 3], size = [14, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat4a_e", type = "brick", at = [0, 0, 4], size = [14, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat4b_e", type = "brick", at = [14, 0, 4], size = [10, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat4c_e", type = "brick", at = [24, 0, 4], size = [10, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat0a_d", type = "brick", at = [0, 15, 0], size = [17, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat0b_d", type = "brick", at = [17, 15, 0], size = [17, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat1a_d", type = "brick", at = [0, 15, 1], size = [12, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat1b_d", type = "brick", at = [12, 15, 1], size = [12, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat1c_d", type = "brick", at = [24, 15, 1], size = [10, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat2a_d", type = "brick", at = [0, 15, 2], size = [14, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat2b_d", type = "brick", at = [14, 15, 2], size = [8, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat2c_d", type = "brick", at = [22, 15, 2], size = [12, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat3a_d", type = "brick", at = [0, 15, 3], size = [10, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat3b_d", type = "brick", at = [10, 15, 3], size = [10, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat3c_d", type = "brick", at = [20, 15, 3], size = [14, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat4a_d", type = "brick", at = [0, 15, 4], size = [14, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat4b_d", type = "brick", at = [14, 15, 4], size = [10, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "lat4c_d", type = "brick", at = [24, 15, 4], size = [10, 1, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "y" },
+  { id = "trav0_x1", type = "brick", at = [1, 1, 0], size = [1, 14, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "trav0_x9", type = "brick", at = [9, 1, 0], size = [1, 14, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "trav0_x17", type = "brick", at = [17, 1, 0], size = [1, 14, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "trav0_x25", type = "brick", at = [25, 1, 0], size = [1, 14, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "trav0_x32", type = "brick", at = [32, 1, 0], size = [1, 14, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "trav4_x1", type = "brick", at = [1, 1, 4], size = [1, 14, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "trav4_x12", type = "brick", at = [12, 1, 4], size = [1, 14, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "trav4_x25", type = "brick", at = [25, 1, 4], size = [1, 14, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "trav4_x32", type = "brick", at = [32, 1, 4], size = [1, 14, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "piso0", type = "brick", at = [1, 1, 1], size = [8, 14, 1], color = [0.97, 0.47, 0.1], thickness = 4.0, holes = "z", rounded = "z", corner_r = 2.0, faces = { bottom = "stud" } },
+  { id = "piso1", type = "brick", at = [9, 1, 1], size = [8, 14, 1], color = [0.97, 0.47, 0.1], thickness = 4.0, holes = "z", rounded = "z", corner_r = 2.0, faces = { bottom = "stud" } },
+  { id = "piso2", type = "brick", at = [17, 1, 1], size = [8, 14, 1], color = [0.97, 0.47, 0.1], thickness = 4.0, holes = "z", rounded = "z", corner_r = 2.0, faces = { bottom = "stud" } },
+  { id = "piso3", type = "brick", at = [25, 1, 1], size = [8, 14, 1], color = [0.97, 0.47, 0.1], thickness = 4.0, holes = "z", rounded = "z", corner_r = 2.0, faces = { bottom = "stud" } },
+  { id = "deck_t_e", type = "brick", at = [0, 0, 5], size = [14, 8, 1], color = [0.97, 0.47, 0.1], holes = "z", rounded = "z", corner_r = 4.0, faces = { bottom = "stud" } },
+  { id = "deck_t_d", type = "brick", at = [0, 8, 5], size = [14, 8, 1], color = [0.97, 0.47, 0.1], holes = "z", rounded = "z", corner_r = 4.0, faces = { bottom = "stud" } },
+  { id = "deck_f", type = "brick", at = [24, 1, 5], size = [10, 14, 1], color = [0.97, 0.47, 0.1], holes = "z", rounded = "z", corner_r = 4.0, faces = { bottom = "stud" } },
+  { id = "frente1", type = "brick", at = [34, 0, 1], size = [1, 16, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "frente2", type = "brick", at = [34, 0, 2], size = [1, 16, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "frente3", type = "brick", at = [34, 0, 3], size = [1, 16, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "frente4", type = "brick", at = [34, 0, 4], size = [1, 16, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "parachoque_f", type = "brick", at = [34, 0, 0], size = [2, 16, 1], color = [0.97, 0.47, 0.1], holes = "xz", rounded = "z", corner_r = 4.0 },
+  { id = "tras1", type = "brick", at = [-1, 0, 1], size = [1, 16, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "tras2", type = "brick", at = [-1, 0, 2], size = [1, 16, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "tras3", type = "brick", at = [-1, 0, 3], size = [1, 16, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "tras4", type = "brick", at = [-1, 0, 4], size = [1, 16, 1], color = [0.97, 0.47, 0.1], holes = "xyz", rounded = "x" },
+  { id = "parachoque_t", type = "brick", at = [-2, 0, 0], size = [2, 16, 1], color = [0.97, 0.47, 0.1], holes = "xz", rounded = "z", corner_r = 4.0 },
+  { id = "poste_x0_e", type = "brick", at = [0, 0, 6], size = [1, 1, 8], color = [0.11, 0.11, 0.12], holes = "xyz", rounded = "y" },
+  { id = "poste_x9_e", type = "brick", at = [9, 0, 6], size = [1, 1, 8], color = [0.11, 0.11, 0.12], holes = "xyz", rounded = "y" },
+  { id = "trilho_e", type = "brick", at = [1, 0, 14], size = [17, 1, 1], color = [0.11, 0.11, 0.12], holes = "xyz", rounded = "y" },
+  { id = "no_alto_e", type = "node", at = [18, 0, 14], dirs = [[-1, 0, 0], [4, 0, -3]], color = [0.11, 0.11, 0.12] },
+  { id = "no_baixo_e", type = "node", at = [30, 0, 5], dirs = [[0, 0, -1], [-4, 0, 3]], color = [0.11, 0.11, 0.12] },
+  { id = "coluna_a_e", type = "strut", from = "no_baixo_e", to = "no_alto_e", style = "beam", color = [0.11, 0.11, 0.12] },
+  { id = "poste_x0_d", type = "brick", at = [0, 15, 6], size = [1, 1, 8], color = [0.11, 0.11, 0.12], holes = "xyz", rounded = "y" },
+  { id = "poste_x9_d", type = "brick", at = [9, 15, 6], size = [1, 1, 8], color = [0.11, 0.11, 0.12], holes = "xyz", rounded = "y" },
+  { id = "trilho_d", type = "brick", at = [1, 15, 14], size = [17, 1, 1], color = [0.11, 0.11, 0.12], holes = "xyz", rounded = "y" },
+  { id = "no_alto_d", type = "node", at = [18, 15, 14], dirs = [[-1, 0, 0], [4, 0, -3]], color = [0.11, 0.11, 0.12] },
+  { id = "no_baixo_d", type = "node", at = [30, 15, 5], dirs = [[0, 0, -1], [-4, 0, 3]], color = [0.11, 0.11, 0.12] },
+  { id = "coluna_a_d", type = "strut", from = "no_baixo_d", to = "no_alto_d", style = "beam", color = [0.11, 0.11, 0.12] },
+  { id = "teto_tras", type = "brick", at = [0, 0, 14], size = [1, 16, 1], color = [0.11, 0.11, 0.12], holes = "xyz", rounded = "x" },
+  { id = "teto_frente", type = "brick", at = [17, 1, 14], size = [1, 14, 1], color = [0.11, 0.11, 0.12], holes = "xyz", rounded = "x" },
+  { id = "teto", type = "brick", at = [0, 0, 15], size = [18, 16, 1], color = [0.83, 0.73, 0.56], thickness = 4.0, holes = "none", rounded = "z", corner_r = 4.0, faces = { bottom = "stud" }, studs_on = "edge" },
+  { id = "suporte_cam", type = "brick", at = [33, 6, 6], size = [1, 4, 4], color = [0.11, 0.11, 0.12], holes = "xz", faces = { bottom = "stud" } },
+  { id = "suporte_led_e", type = "brick", at = [33, 2, 6], size = [1, 2, 2], color = [0.11, 0.11, 0.12], holes = "xz", faces = { bottom = "stud" } },
+  { id = "suporte_led_d", type = "brick", at = [33, 12, 6], size = [1, 2, 2], color = [0.11, 0.11, 0.12], holes = "xz", faces = { bottom = "stud" } },
+  { id = "base_bat", type = "brick", at = [2, 4, 6], size = [12, 8, 1], color = [0.62, 0.63, 0.66], thickness = 4.0, holes = "z", rounded = "z", corner_r = 4.0, faces = { bottom = "stud" } },
+  { id = "presilha_x2", type = "brick", at = [2, 5, 6.5], size = [1, 6, 3], color = [0.62, 0.63, 0.66], holes = "z", faces = { bottom = "stud" } },
+  { id = "presilha_x13", type = "brick", at = [13, 5, 6.5], size = [1, 6, 3], color = [0.62, 0.63, 0.66], holes = "z", faces = { bottom = "stud" } },
+  { id = "roda_te", type = "wheel", at = [6, -1, 2], on = "lat2a_e.right", diameter = 14, width = 5, tread = "balloon", spokes = 5, spoke_style = "y" },
+  { id = "roda_fe", type = "wheel", at = [27, -1, 2], on = "lat2c_e.right", diameter = 14, width = 5, tread = "balloon", spokes = 5, spoke_style = "y" },
+  { id = "roda_td", type = "wheel", at = [6, 16, 2], on = "lat2a_d.left", diameter = 14, width = 5, tread = "balloon", spokes = 5, spoke_style = "y" },
+  { id = "roda_fd", type = "wheel", at = [27, 16, 2], on = "lat2c_d.left", diameter = 14, width = 5, tread = "balloon", spokes = 5, spoke_style = "y" },
+  { id = "bateria", type = "component", at = [3.05, 5.4, 6.5], size_mm = [54.0, 42.0, 28.0], label = "bateria (corpo)", color = [0.12, 0.12, 0.13, 0.95] },
+  { id = "bateria_tampa", type = "component", at = [9.8, 5.4, 6.5], size_mm = [23.5, 42.0, 28.0], label = "bateria (tampa)", color = [0.8, 0.5, 0.22, 0.95] },
+  { id = "terminal0", type = "component", at = [11.7, 6.6, 10.0], size_mm = [6.0, 6.0, 4.0], label = "terminal", color = [0.75, 0.75, 0.78, 1.0], shape = "cyl", axis = "z" },
+  { id = "terminal1", type = "component", at = [11.7, 9.0, 10.0], size_mm = [6.0, 6.0, 4.0], label = "terminal", color = [0.75, 0.75, 0.78, 1.0], shape = "cyl", axis = "z" },
+  { id = "esp32cam", type = "component", at = [34.0, 6.3, 6.5], size_mm = [4.5, 27.0, 40.0], label = "ESP32-CAM", color = [0.08, 0.3, 0.2, 0.95] },
+  { id = "camera_mod", type = "component", at = [34.56, 7.25, 9.1], size_mm = [2.0, 12.0, 12.0], label = "módulo da câmera", color = [0.06, 0.06, 0.06, 1.0] },
+  { id = "lente", type = "component", at = [34.81, 7.94, 9.8], size_mm = [8.0, 8.0, 5.0], label = "lente", color = [0.02, 0.02, 0.03, 1.0], shape = "cyl", axis = "x" },
+  { id = "led_e0", type = "component", at = [34.0, 2.15, 7.15], size_mm = [5.5, 5.5, 7.0], label = "LED branco", color = [0.96, 0.96, 1.0, 0.9], shape = "cyl", axis = "x" },
+  { id = "led_e1", type = "component", at = [34.0, 3.05, 7.15], size_mm = [5.5, 5.5, 7.0], label = "LED branco", color = [0.96, 0.96, 1.0, 0.9], shape = "cyl", axis = "x" },
+  { id = "led_e2", type = "component", at = [34.0, 2.15, 6.25], size_mm = [5.5, 5.5, 7.0], label = "LED âmbar", color = [1.0, 0.78, 0.08, 0.9], shape = "cyl", axis = "x" },
+  { id = "led_e3", type = "component", at = [34.0, 3.05, 6.25], size_mm = [5.5, 5.5, 7.0], label = "LED âmbar", color = [1.0, 0.78, 0.08, 0.9], shape = "cyl", axis = "x" },
+  { id = "led_d0", type = "component", at = [34.0, 12.15, 7.15], size_mm = [5.5, 5.5, 7.0], label = "LED branco", color = [0.96, 0.96, 1.0, 0.9], shape = "cyl", axis = "x" },
+  { id = "led_d1", type = "component", at = [34.0, 13.05, 7.15], size_mm = [5.5, 5.5, 7.0], label = "LED branco", color = [0.96, 0.96, 1.0, 0.9], shape = "cyl", axis = "x" },
+  { id = "led_d2", type = "component", at = [34.0, 12.15, 6.25], size_mm = [5.5, 5.5, 7.0], label = "LED âmbar", color = [1.0, 0.78, 0.08, 0.9], shape = "cyl", axis = "x" },
+  { id = "led_d3", type = "component", at = [34.0, 13.05, 6.25], size_mm = [5.5, 5.5, 7.0], label = "LED âmbar", color = [1.0, 0.78, 0.08, 0.9], shape = "cyl", axis = "x" },
+  { id = "farol_e", type = "component", at = [15.4, 0.3, 15.5], size_mm = [12.0, 12.0, 10.0], label = "farol (corpo)", color = [0.06, 0.06, 0.07, 1.0], shape = "cyl", axis = "x" },
+  { id = "farol_lente_e", type = "component", at = [16.65, 0.49, 15.69], size_mm = [9.0, 9.0, 1.5], label = "farol (lente)", color = [0.97, 0.97, 1.0, 0.95], shape = "cyl", axis = "x" },
+  { id = "farol_d", type = "component", at = [15.4, 14.2, 15.5], size_mm = [12.0, 12.0, 10.0], label = "farol (corpo)", color = [0.06, 0.06, 0.07, 1.0], shape = "cyl", axis = "x" },
+  { id = "farol_lente_d", type = "component", at = [16.65, 14.39, 15.69], size_mm = [9.0, 9.0, 1.5], label = "farol (lente)", color = [0.97, 0.97, 1.0, 0.95], shape = "cyl", axis = "x" },
+  { id = "letreiro", type = "component", at = [8.0, 8.0, 15.5], size_mm = [11.0, 0.0, 0.6], label = "letreiro V-T", color = [0.25, 0.22, 0.18, 1.0], shape = "text", text = "V-T", axis = "90" },
+  { id = "fio0", type = "component", at = [0, 0, 0], size_mm = [2.2, 2.2, 2.2], label = "fio", color = [0.85, 0.12, 0.1, 1.0], shape = "cable", points = [[33.9, 7.4, 9.6], [31.5, 4.5, 6.35], [24.5, 0.6, 6.35], [23.6, 0.6, 5.35], [15.0, 0.6, 5.35], [14.2, 0.6, 6.35], [13.0, 3.2, 6.6], [12.4, 6.6, 10.6]] },
+  { id = "fio1", type = "component", at = [0, 0, 0], size_mm = [2.2, 2.2, 2.2], label = "fio", color = [0.12, 0.35, 0.85, 1.0], shape = "cable", points = [[33.9, 7.7, 9.6], [31.5, 4.8, 6.35], [24.5, 0.9, 6.35], [23.6, 0.9, 5.35], [15.0, 0.9, 5.35], [14.2, 0.9, 6.35], [13.0, 3.5, 6.6], [12.4, 7.2, 10.6]] },
+  { id = "fio2", type = "component", at = [0, 0, 0], size_mm = [2.2, 2.2, 2.2], label = "fio", color = [0.1, 0.65, 0.35, 1.0], shape = "cable", points = [[33.9, 8.0, 9.6], [31.5, 5.1, 6.35], [24.5, 1.2, 6.35], [23.6, 1.2, 5.35], [15.0, 1.2, 5.35], [14.2, 1.2, 6.35], [13.0, 3.8, 6.6], [12.4, 7.8, 10.6]] },
+]
+
+groups = [
+  { id = "chassi", parts = ["lat0a_e", "lat0b_e", "lat1a_e", "lat1b_e", "lat1c_e", "lat2a_e", "lat2b_e", "lat2c_e", "lat3a_e", "lat3b_e", "lat3c_e", "lat4a_e", "lat4b_e", "lat4c_e", "lat0a_d", "lat0b_d", "lat1a_d", "lat1b_d", "lat1c_d", "lat2a_d", "lat2b_d", "lat2c_d", "lat3a_d", "lat3b_d", "lat3c_d", "lat4a_d", "lat4b_d", "lat4c_d", "trav0_x1", "trav0_x9", "trav0_x17", "trav0_x25", "trav0_x32", "trav4_x1", "trav4_x12", "trav4_x25", "trav4_x32", "piso0", "piso1", "piso2", "piso3", "deck_t_e", "deck_t_d", "deck_f", "frente1", "frente2", "frente3", "frente4", "parachoque_f", "tras1", "tras2", "tras3", "tras4", "parachoque_t"], note = "Laterais em 4 camadas de liftarms com emendas desencontradas; travessas, piso, decks e para-choques. Tudo por cavilha." },
+  { id = "rodas", parts = ["roda_te", "roda_fe", "roda_td", "roda_fd"], note = "Roda no eixo, eixo no rebaixo da camada do meio da lateral." },
+  { id = "bateria", parts = ["base_bat", "presilha_x2", "presilha_x13"], note = "Base cinza sobre o deck traseiro, presilhas nas pontas." },
+  { id = "gaiola", parts = ["poste_x0_e", "poste_x9_e", "trilho_e", "no_alto_e", "no_baixo_e", "coluna_a_e", "poste_x0_d", "poste_x9_d", "trilho_d", "no_alto_d", "no_baixo_d", "coluna_a_d", "teto_tras", "teto_frente"], note = "Postes nos decks, quadro do teto, colunas A em diagonal 9-12-15 entre os nós." },
+  { id = "teto", parts = ["teto"], note = "Laje bege sobre o quadro, cavilhas em todo o perímetro." },
+  { id = "frente", parts = ["suporte_cam", "suporte_led_e", "suporte_led_d"], note = "Suporte da câmera e suportes dos LEDs sobre o deck dianteiro." },
+  { id = "eletronica", parts = ["bateria", "bateria_tampa", "terminal0", "terminal1", "esp32cam", "camera_mod", "lente", "led_e0", "led_e1", "led_e2", "led_e3", "led_d0", "led_d1", "led_d2", "led_d3", "farol_e", "farol_lente_e", "farol_d", "farol_lente_d", "letreiro", "fio0", "fio1", "fio2"], note = "Mocks: reservam espaço, não são impressos." },
+]
