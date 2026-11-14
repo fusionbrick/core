@@ -36,24 +36,32 @@ FusionBrick is built around one rule:
 
 > **Any piece connects to any other piece, on any face, in any direction.**
 
-Every Brick has holes on all 6 faces following the same grid pattern. A **Link** (separate connector piece) joins any two holes together — press-fit for prototyping, glued for permanent builds.
+Every piece has holes on the same 8 mm grid. On each face you get a printed **stud**, a **socket** that receives one, or a flat face; two facing sockets are joined by a loose **dowel**. Press-fit for prototyping, glued for permanent builds.
 
-![U-channel assembly — 3 PLATEs joined by BRIDGEs, walls locked by CORNERs, ATOM connected via LINKs](examples/u-channel/assembly.gif)
+![Rover Orion — 174 printed parts, assembled and exploded](examples/rover-orion/assembly.gif)
 
 ---
 
 ## The Pieces
 
-| Piece | Preview | Description | File |
+Eight pieces in an assembly. Brick, beam, plate and cover are the same BRICK with different defaults; curve, strut, wheel and component cover what a block can't do.
+
+| Piece | Preview | Description | Source |
 | --- | :---: | --- | --- |
-| **ATOM** | <img src="renders/img/atom.gif" width="140" alt="ATOM"> | Cubic structural unit. Holes on all 6 faces. | `impl/openscad/atom.scad` |
-| **PLATE** | <img src="renders/img/plate.gif" width="140" alt="PLATE"> | Flat modular surface. Grid-aligned holes. | `impl/openscad/plate.scad` |
-| **LINK** | <img src="renders/img/link.gif" width="140" alt="LINK"> | Universal connector. Joins any two holes. | `impl/openscad/link.scad` |
-| **BRIDGE** | <img src="renders/img/bridge.gif" width="140" alt="BRIDGE"> | Invisible coplanar joint dowel (PLATE↔PLATE, PLATE↔ATOM). | `impl/openscad/bridge.scad` |
-| **CORNER** | <img src="renders/img/corner.gif" width="140" alt="CORNER"> | Corner beam. Joins two PLATEs at 90° via edge holes. | `impl/openscad/corner.scad` |
-| **PIN** | <img src="renders/img/pin.gif" width="140" alt="PIN"> | Configurable connector beam: pin, hole or none per face. With presets. | `impl/openscad/pin.scad` |
-| **ELBOW** | <img src="renders/img/elbow.gif" width="140" alt="ELBOW"> | 90° curve with rounded outer corner. Wire turns the corner inside. | `impl/openscad/elbow.scad` |
-| **VERTEX** | <img src="renders/img/vertex.gif" width="140" alt="VERTEX"> | 3-way rounded-tip corner. Joins base + 2 walls at a vertex. | `impl/openscad/vertex.scad` |
+| **`brick`** | <img src="renders/img/parts/brick.gif" width="140" alt="brick"> | The base piece. Any size in cells, holes per axis and, on each face, a stud, a socket or flat. Always orthogonal. | `impl/openscad/brick.scad` |
+| **`beam`** | <img src="renders/img/parts/beam.gif" width="140" alt="beam"> | 1×1×n bar holed on all three axes, rounded ends. The backbone of almost everything. | `brick.scad` variant |
+| **`plate`** | <img src="renders/img/parts/plate.gif" width="140" alt="plate"> | 4 mm holed sheet, for floors and bases. | `brick.scad` variant |
+| **`cover`** | <img src="renders/img/parts/cover.gif" width="140" alt="cover"> | Smooth sheet that closes the top, studs only around the bottom edge. | `brick.scad` variant |
+| **`curve`** | <img src="renders/img/parts/curve.gif" width="140" alt="curve"> | Beam that turns 90° or 180°, in three radii. The exit lands on the grid. | `impl/openscad/curve.scad` |
+| **`strut`** | <img src="renders/img/parts/strut.gif" width="140" alt="strut"> | Slanted beam between two cells; the end nodes are created for you. Only angles that close on the grid (3-4-5, 5-12-13…). | `impl/openscad/node.scad` + `brick.scad` |
+| **`wheel`** | <img src="renders/img/parts/wheel.gif" width="140" alt="wheel"> | Wheel with its axle, Ø24 to Ø112 mm, three tread types. | `impl/openscad/wheel.scad` + `axle.scad` |
+| **`component`** | <img src="renders/img/parts/component.gif" width="140" alt="component"> | What you buy ready-made (battery, board, motor, sensor). Not printed: reserves the volume at real size. | — |
+
+The **PIN** (`impl/openscad/pin.scad`) is the dowel: the loose two-ended pin that joins two facing sockets. The compiler adds it for you.
+
+**Connectors:** `stud` (pin printed on the face) · `socket` (recess that receives a pin) · `flat` (plain face) · dowel (two-ended PIN between two sockets).
+
+The old pieces (ATOM, LINK, BRIDGE, CORNER, VERTEX, ELBOW) became configurations of BRICK or PIN.
 
 ---
 
@@ -62,17 +70,18 @@ Every Brick has holes on all 6 faces following the same grid pattern. A **Link**
 All pieces share the same global parameters. **Keep them equal across pieces to guarantee compatibility.**
 
 ```
-cell_size     = 20mm   // base grid unit
-hole_d        = 10mm   // hole diameter
-relief_depth  = 2mm    // countersink depth
-relief_margin = 2mm    // countersink margin
-tolerance     = 0.2mm  // print fit tolerance
-canal_d       = 6mm    // wire channel in every connector (0 = solid)
+hole_d    = 4.0mm   // hole diameter
+wall      = 1.6mm   // wall around the hole
+collar_w  = 0.4mm   // recess collar
+tolerance = 0.2mm   // print fit tolerance
+grid      = 8mm     // DERIVED: hole_d + 2·(wall + collar_w) — never declared
 ```
+
+Single source: [`spec/params.md`](spec/params.md), generated from each part's contract.
 
 System premises: [spec/constitution.md](spec/constitution.md) · Grid Law and joints: [spec/rules.md](spec/rules.md).
 
-> **Compatibility rule:** if `cell_size`, `hole_d` and `relief_*` are equal across pieces, all holes align perfectly — no matter which pieces you combine.
+> **Compatibility rule:** the grid is derived from the hole, so every piece built from the same primitives lines up — no matter which pieces you combine.
 
 ---
 
@@ -83,7 +92,7 @@ System premises: [spec/constitution.md](spec/constitution.md) · Grid Law and jo
 - Any FDM printer (tested on Bambu Lab A1 Mini)
 - PLA or PETG filament
 
-### Print your first ATOM
+### Print your first BRICK
 
 1. Clone the repository
 ```bash
@@ -93,7 +102,7 @@ git clone https://github.com/wguilherme/fusionbrick.git
 2. Open in OpenSCAD
 ```bash
 cd fusionbrick
-open impl/openscad/atom.scad
+open impl/openscad/brick.scad
 ```
 
 3. Render and export STL
@@ -216,12 +225,20 @@ FusionBrick/
 - [x] Grid Law formalized (`spec/constitution.md`, `spec/rules.md`)
 - [x] `make assembly` — isometric assemblies with collision testing
 
-### v0.3.0 — Parametric
+### v0.3.0 — Assembly by description ✅
+- [x] 8 mm grid derived from the hole, connector drawn once
+- [x] Pieces: brick, beam, plate, cover, curve, strut, wheel, component
+- [x] Assembly compiler (`assembly.toml`) with ASM-### rules and a quality sheet
+- [x] Examples: buggies, test assemblies and the Rover Orion
+
+### v0.4.0 — Parametric
 - [ ] Hole pattern selection (all, edges, corners)
 - [ ] Multi-scale support (10mm, 20mm, 30mm grid)
 - [ ] MakerWorld PMM upload
 
-### v0.4.0 — Connected
+### v0.5.0 — Connected
+- [ ] Pivot pin (articulated suspension and arms)
+- [ ] Motor-to-wheel hub
 - [ ] Magnetic snap connectors
 - [ ] Wireless integration layer
 
