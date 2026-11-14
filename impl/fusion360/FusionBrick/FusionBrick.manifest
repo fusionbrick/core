@@ -1,0 +1,10 @@
+{
+  "autodeskProduct": "Fusion360",
+  "type": "addin",
+  "id": "b7e14a92-3c58-4d61-9f02-8ad5e6c1b430",
+  "author": "Withney Guilherme",
+  "description": { "": "FusionBrick — parametric modular design system" },
+  "version": "0.1",
+  "runOnStartup": false,
+  "supportedOS": "windows|mac"
+}
