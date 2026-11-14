@@ -1,0 +1,2 @@
+249 pares de peças vizinhas
+pior interseção: 0.0002 mm³ — ZERO COLISÃO

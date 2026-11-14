@@ -1,0 +1,28 @@
+ok    rover-orion: 57 blocos · 6 rodas · 14 nós · 7 vigas · 14 curvas · 29 componentes · 798 encaixes por pino · 70 cavilhas · 6 eixos
+info  ASM-010  vão livre do chão: 40mm
+info  ASM-004  bico_f: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  bico_t: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  bogie_t_e: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  perna_t_e-v: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  bogie_f_e: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  bogie_t_d: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  perna_t_d-v: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  bogie_f_d: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pendural_x11_y3: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pendural_x11_y10: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pendural_x21_y3: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pendural_x21_y10: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco_t-pe: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco_t-pd: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco_m-pe: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco_m-pd: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco_f-pe: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco_f-pd: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  longarina_y3-v: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  longarina_y10-v: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  braco-v: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+
+rover-orion: 328 × 224 × 216 mm
+  estruturais 92 · impressas 174 (cavilhas 70) · STLs únicos 37 · componentes 29 · pinos livres 0
+  resolução 28.0 peças/100mm · maior peça 160mm
+  sem alertas de qualidade
