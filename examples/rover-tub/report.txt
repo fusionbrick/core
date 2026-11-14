@@ -1,0 +1,7 @@
+ok    rover-tub: 12 blocos · 4 rodas · 80 encaixes por pino · 0 cavilhas · 4 eixos
+info  ASM-010  vão livre do chão: 12mm
+
+rover-tub: 112 × 72 × 68 mm
+  estruturais 12 · impressas 20 (cavilhas 0) · STLs únicos 9 · componentes 0 · pinos livres 0
+  resolução 10.7 peças/100mm · maior peça 96mm
+  dica: baixa resolução (11 peças/100mm; kit técnico fica em 15–40): aumente a escala ou quebre blocos grandes em vigas

@@ -1,0 +1,22 @@
+ok    t1-cubo-vigas: 12 blocos · 0 rodas · 0 encaixes por pino · 16 cavilhas · 0 eixos
+AVISO ASM-012  y0-inf: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  y1-inf: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  y0-sup: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  y1-sup: precisaria entrar em −y, +y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+info  ASM-004  y0-inf: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  y1-inf: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste0: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste1: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste2: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste3: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  y0-sup: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  y1-sup: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+
+t1-cubo-vigas: 64 × 64 × 64 mm
+  estruturais 12 · impressas 28 (cavilhas 16) · STLs únicos 3 · componentes 0 · pinos livres 0
+  resolução 18.8 peças/100mm · maior peça 64mm
+  dica: 16/28 das peças impressas são cavilhas: use dowel_every = 3, pinos impressos (studs) onde não há ponta redonda, ou contatos mais curtos

@@ -1,0 +1,21 @@
+.playwright-mcp/
+/experiments
+
+# config local do pipeline — ver .env.example
+.env
+
+# empacotamento do add-in (make fusion-vendor)
+dist/
+
+# ai
+.claude/settings.json
+
+# misc
+.DS_Store
+*.log
+/*.png
+# assembly: carimbo do cache de STL (local)
+*.stl.src
+
+# python
+__pycache__/

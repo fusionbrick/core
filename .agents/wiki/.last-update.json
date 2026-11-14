@@ -1,0 +1,9 @@
+{
+  "updatedAt": "2026-07-29T15:07:02.527Z",
+  "command": "init",
+  "gitHead": "7c32dd39bfeadd7c92c19a2a77c0a958143b09b8",
+  "sourceHash": "4197b75c84a478bbab67d0e924af13dcf9c7e77f80bce01e48a3d29c7e0e3e59",
+  "model": "aws-bedrock-anthropic/anthropic.claude-opus-5",
+  "skillVersion": "8",
+  "contentHash": "78fbd498239c07ecda84a6a35e55f88185b78e1e37a75995c690f2858dbbc105"
+}

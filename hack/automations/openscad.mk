@@ -1,49 +1,13 @@
 SHELL := /bin/bash
-OPENSCAD := openscad
-MAGICK   := magick
-FFMPEG   := ffmpeg
-IMPL_DIR    := impl/openscad
-RENDERS_DIR := renders
-STL_DIR     := $(RENDERS_DIR)/stl
-IMG_DIR     := $(RENDERS_DIR)/img
-PARTS       := $(basename $(notdir $(wildcard $(IMPL_DIR)/*.scad)))
-ASSEMBLIES  := $(wildcard examples/*/assembly.scad)
 
-IMGSIZE     := 800,600
-IMG_W       := 800
-IMG_H       := 600
-# options: Cornfield | Metallic | Sunset | Starnight | BeforeDawn | Nature | DeepOcean | Solarized | Tomorrow | Tomorrow Night | Monotone — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Preferences#Color_Schemes
-COLORSCHEME := Monotone
-GRAD_TOP    := rgb(208,208,208)
-GRAD_BOT    := rgb(82, 82, 82)
-PART_COLOR  := [0.35, 0.38, 0.42]
-ASM_IMGSIZE := 1200,900
-# câmera isométrica: projeção ortográfica + rotação 54.7°/45°
-ISO_ELEV    := 54.7
-ISO_AZIM    := 45
-ISO_CAMERA  := --projection=o --camera=0,0,0,$(ISO_ELEV),0,$(ISO_AZIM),500 --autocenter --viewall
+# Configuração inteira em variables.mk — aqui só receitas.
+include $(dir $(lastword $(MAKEFILE_LIST)))variables.mk
 
-# animação: frames por volta completa e delay entre frames (1/100s)
-ANIM_FRAMES := 36
-ANIM_DELAY  := 15
-
-# animação de assembly: frames totais (explode/recolhe) e delay
-ASM_ANIM_FRAMES := 72
-ASM_ANIM_DELAY  := 5
-ASM_ANIM_EXPLODE := 12
-# graus de giro total no loop — 0 (padrão) mantém a câmera fixa no ângulo
-# isométrico e só anima o explode/recolhe
-ASM_ANIM_SPIN := 0
-# multiplicador de velocidade — 2 = 2x mais rápido, 0.5 = metade (padrão: 1)
-ASM_ANIM_SPEED := 1
-# frame rate do MP4 — junto com ASM_ANIM_FRAMES define a duração do loop
-ASM_VIDEO_FPS := 30
-
-.PHONY: preview preview-animated build assembly assembly-animated assembly-video _assembly-frames
+.PHONY: preview preview-animated build assembly assembly-animated assembly-video _assembly-frames preview-wireframe assembly-wireframe
 
 preview:
 	@mkdir -p $(IMG_DIR)
-	@for part in $(PARTS); do \
+	@for part in $(SELECTED); do \
 		$(OPENSCAD) \
 			--export-format png \
 			--colorscheme=$(COLORSCHEME) \
@@ -51,18 +15,26 @@ preview:
 			$(ISO_CAMERA) \
 			--preview \
 			-D "part_color=$(PART_COLOR)" \
+			$(SYSTEM_D) $(EXTRA_D) \
 			-o $(IMG_DIR)/$$part.tmp.png \
 			$(IMPL_DIR)/$$part.scad || { echo "SKIP $$part (render failed)"; continue; }; \
 		BG=$$($(MAGICK) $(IMG_DIR)/$$part.tmp.png -format "%[pixel:u.p{0,0}]" info:); \
 		$(MAGICK) $(IMG_DIR)/$$part.tmp.png -fuzz 2% -transparent "$$BG" $(IMG_DIR)/$$part.png; \
 		rm -f $(IMG_DIR)/$$part.tmp.png; \
 	done
+	@echo "-> $(IMG_DIR)   [<peca>.png]  $(SELECTED)"
 
 build:
 	@mkdir -p $(STL_DIR)
-	@for part in $(PARTS); do \
-		$(OPENSCAD) --export-format binstl -o $(STL_DIR)/$$part.stl $(IMPL_DIR)/$$part.scad; \
+	@for part in $(SELECTED); do \
+		echo "STL $$part (radius=$(BORDER_RADIUS))"; \
+		$(OPENSCAD) --export-format binstl \
+			-D "border_radius=$(BORDER_RADIUS)" \
+			-D 'border_style="$(BORDER_STYLE)"' \
+			$(SYSTEM_D) $(EXTRA_D) \
+			-o $(STL_DIR)/$$part.stl $(IMPL_DIR)/$$part.scad; \
 	done
+	@echo "-> $(STL_DIR)   [<peca>.stl]  $(SELECTED)"
 
 assembly:
 	@for asm in $(ASSEMBLIES); do \
@@ -73,6 +45,7 @@ assembly:
 			--imgsize=$(ASM_IMGSIZE) \
 			$(ISO_CAMERA) \
 			--preview \
+			$(SYSTEM_D) $(EXTRA_D) \
 			-o $$dir/assembly.png \
 			$$asm || { echo "SKIP $$asm (render failed)"; continue; }; \
 		$(OPENSCAD) \
@@ -80,14 +53,53 @@ assembly:
 			--imgsize=$(ASM_IMGSIZE) \
 			$(ISO_CAMERA) \
 			--preview \
+			$(SYSTEM_D) \
 			-D explode=12 \
+			$(EXTRA_D) \
 			-o $$dir/assembly-exploded.png \
 			$$asm; \
 	done
+	@echo "-> examples/<nome>/   [assembly.png + assembly-exploded.png]  $(notdir $(patsubst %/,%,$(dir $(ASSEMBLIES))))"
+
+# Wireframe das peças. Usa --render porque --preview ignora a
+# opção de view (ver nota em VIEW).
+preview-wireframe:
+	@mkdir -p $(IMG_DIR)
+	@for part in $(SELECTED); do \
+		echo "WIREFRAME $$part"; \
+		$(OPENSCAD) \
+			--export-format png \
+			--imgsize=$(IMGSIZE) \
+			$(ISO_CAMERA) \
+			--render \
+			--view=wireframe \
+			$(SYSTEM_D) $(EXTRA_D) \
+			-o $(IMG_DIR)/$$part-wireframe.png \
+			$(IMPL_DIR)/$$part.scad || echo "SKIP $$part"; \
+	done
+	@echo "-> $(IMG_DIR)   [<peca>-wireframe.png]  $(SELECTED)"
+
+# Wireframe dos assemblies — mostra a topologia da armação sem a
+# espessura das vigas escondendo as junções
+assembly-wireframe:
+	@for asm in $(ASSEMBLIES); do \
+		dir=$$(dirname $$asm); \
+		echo "WIREFRAME ASSEMBLY $$dir"; \
+		$(OPENSCAD) \
+			--export-format png \
+			--imgsize=$(ASM_IMGSIZE) \
+			$(ISO_CAMERA) \
+			--render \
+			--view=wireframe \
+			$(SYSTEM_D) $(EXTRA_D) \
+			-o $$dir/assembly-wireframe.png \
+			$$asm || echo "SKIP $$asm"; \
+	done
+	@echo "-> examples/<nome>/   [assembly-wireframe.png]  $(notdir $(patsubst %/,%,$(dir $(ASSEMBLIES))))"
 
 preview-animated:
 	@mkdir -p $(IMG_DIR)
-	@for part in $(PARTS); do \
+	@for part in $(SELECTED); do \
 		echo "ANIMATE $$part"; \
 		tmpdir=$$(mktemp -d); \
 		ok=1; \
@@ -103,6 +115,7 @@ preview-animated:
 				--autocenter --viewall \
 				--preview \
 				-D "part_color=$(PART_COLOR)" \
+				$(SYSTEM_D) $(EXTRA_D) \
 				-o $$frame \
 				$(IMPL_DIR)/$$part.scad 2>/dev/null || { echo "SKIP $$part (render failed)"; ok=0; break; }; \
 			BG=$$($(MAGICK) $$frame -format "%[pixel:u.p{0,0}]" info:); \
@@ -114,6 +127,7 @@ preview-animated:
 		fi; \
 		rm -rf $$tmpdir; \
 	done
+	@echo "-> $(IMG_DIR)   [<peca>.gif]  $(SELECTED)"
 
 # Renderiza os frames do boomerang (explode/recolhe, giro opcional) para
 # $$tmpdir e ecoa "OK" ou "FAIL" — usado por assembly-animated e
@@ -133,7 +147,9 @@ define ASM_RENDER_FRAMES
 			--camera=0,0,0,$(ISO_ELEV),0,$$rot,500 \
 			--autocenter --viewall \
 			--preview \
+			$(SYSTEM_D) \
 			-D "explode=$$explode" \
+			$(EXTRA_D) \
 			-o $$frame \
 			$$asm 2>/dev/null || { echo "SKIP $$asm (render failed)"; ok=0; break; }; \
 	done;
@@ -157,6 +173,7 @@ assembly-animated:
 		fi; \
 		rm -rf $$tmpdir; \
 	done
+	@echo "-> examples/<nome>/   [assembly.gif]  $(notdir $(patsubst %/,%,$(dir $(ASSEMBLIES))))"
 
 # Mesmo boomerang do assembly-animated, exportado como MP4 (H.264) —
 # bem mais leve que o GIF equivalente, ideal para docs/ e compartilhamento.
@@ -176,3 +193,4 @@ assembly-video:
 		fi; \
 		rm -rf $$tmpdir; \
 	done
+	@echo "-> examples/<nome>/   [assembly.mp4]  $(notdir $(patsubst %/,%,$(dir $(ASSEMBLIES))))"

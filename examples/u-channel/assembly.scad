@@ -92,10 +92,12 @@ module inner_atom() {
 
 module inner_links() {
     // LINK vertical — atom ↔ furo da base
-    translate([10, 10, 5 + explode]) link();
+    // lado A (+Z) entra no ATOM (pino 3), lado B (−Z) na PLATE (alma 1)
+    translate([10, 10, 5 + explode]) link(pin_a = 3, pin_b = 1);
     // LINK horizontal — atom ↔ furo da parede esquerda
+    // rotate 90: lado A aponta +X (ATOM), lado B −X (parede PLATE)
     translate([0 - explode / 2, 10, 15 + explode * 2])
-        rotate([0, 90, 0]) link();
+        rotate([0, 90, 0]) link(pin_a = 3, pin_b = 1);
 }
 
 // ============================================================

@@ -1,0 +1,27 @@
+# GERADO por gen.py — edite o gerador, não este arquivo.
+
+[assembly]
+name = "t1-cubo-vigas"
+view_angle = 35
+intent = "Corpo de prova: cubo 8×8×8 células só de vigas retas, de topo, unidas por cavilhas"
+
+parts = [
+  { id = "x0-inf", type = "brick", at = [0, 0, 0], size = [8, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "x1-inf", type = "brick", at = [0, 7, 0], size = [8, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "y0-inf", type = "brick", at = [0, 1, 0], size = [1, 6, 1], color = [0.97, 0.47, 0.1] },
+  { id = "y1-inf", type = "brick", at = [7, 1, 0], size = [1, 6, 1], color = [0.97, 0.47, 0.1] },
+  { id = "poste0", type = "brick", at = [0, 0, 1], size = [1, 1, 6], color = [0.62, 0.63, 0.66] },
+  { id = "poste1", type = "brick", at = [7, 0, 1], size = [1, 1, 6], color = [0.62, 0.63, 0.66] },
+  { id = "poste2", type = "brick", at = [0, 7, 1], size = [1, 1, 6], color = [0.62, 0.63, 0.66] },
+  { id = "poste3", type = "brick", at = [7, 7, 1], size = [1, 1, 6], color = [0.62, 0.63, 0.66] },
+  { id = "x0-sup", type = "brick", at = [0, 0, 7], size = [8, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "x1-sup", type = "brick", at = [0, 7, 7], size = [8, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "y0-sup", type = "brick", at = [0, 1, 7], size = [1, 6, 1], color = [0.97, 0.47, 0.1] },
+  { id = "y1-sup", type = "brick", at = [7, 1, 7], size = [1, 6, 1], color = [0.97, 0.47, 0.1] },
+]
+
+groups = [
+  { id = "anel-inf", parts = ["x0-inf", "x1-inf", "y0-inf", "y1-inf"], note = "4 vigas no chão" },
+  { id = "postes", parts = ["poste0", "poste1", "poste2", "poste3"], note = "4 postes nos cantos" },
+  { id = "anel-sup", parts = ["x0-sup", "x1-sup", "y0-sup", "y1-sup"], note = "4 vigas no topo fecham o cubo" },
+]

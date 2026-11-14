@@ -1,0 +1,249 @@
+# ============================================================
+# BRICK — contrato de interface
+# ============================================================
+# FONTE ÚNICA das cotas do BRICK. Legível por máquina de
+# propósito: `make spec-check` confere este arquivo contra o core
+# Python, contra os echos do OpenSCAD e contra o `make vars`.
+#
+# Antes deste arquivo as fórmulas de derivação estavam escritas à
+# mão em QUATRO lugares independentes — tabelas da spec, cabeçalho
+# de cada .scad, params.py e o bloco awk do variables.mk. E
+# divergiram: a spec dizia pin_len = 1.6 derivado enquanto as
+# quatro implementações declaravam 2.0.
+#
+# TOML e não YAML porque `tomllib` é stdlib (3.11+) e o core roda
+# dentro do Fusion, onde instalar dependência é hostil. E aceita
+# comentário, que JSON não aceita — contrato sem comentário perde
+# o porquê.
+#
+# spec:         spec/parts/brick/spec.md
+# constituição: spec/constitution.md
+# ============================================================
+
+[meta]
+part = "brick"
+spec = "spec/parts/brick/spec.md"
+
+# ------------------------------------------------------------
+# Primitivos
+# ------------------------------------------------------------
+# O BRICK CONSOME estes valores; quem os define é o sistema
+# (spec/constitution.md). Estão aqui para as fórmulas fecharem
+# sozinhas e o check ser auto-contido.
+[primitives]
+hole_d       = 4.0   # furo passante — a interface mecânica
+wall         = 1.6   # parede interna mínima (4 perímetros de 0.4)
+collar_w     = 0.4   # degrau RADIAL entre furo e rebaixo
+collar_depth = 1.0   # profundidade AXIAL do rebaixo
+tolerance    = 0.2   # folga de press-fit, sempre do MACHO
+gap          = 0.5   # folga real mínima entre dois machos
+
+# DECLARADO, não derivado. A fórmula antiga
+# (wall + collar_w + tolerance/2 - gap = 1.6) cobrava √2 a mais:
+# o limite é a colisão com o macho PERPENDICULAR, e essa
+# aproximação é DIAGONAL, não axial. Ver constitution.md § 5.
+pin_len      = 2.0
+
+# ------------------------------------------------------------
+# Derivados
+# ------------------------------------------------------------
+# `formula` é avaliada pelo check e tem de dar `value`. Nenhum
+# número aqui é escolhido à mão.
+
+[derived.grid]
+formula = "hole_d + 2*(wall + collar_w)"
+value   = 8.0
+note    = "O grid é DERIVADO. Declará-lo permitiria pedir um que não fecha com o próprio furo."
+
+[derived.recess_d]
+formula = "hole_d + 2*collar_w"
+value   = 4.8
+
+[derived.pin_d]
+formula = "hole_d - tolerance"
+value   = 3.8
+
+[derived.collar_d]
+formula = "recess_d - tolerance"
+value   = 4.6
+
+[derived.inset]
+formula = "grid/2"
+value   = 4.0
+note    = "Do canto da célula ao centro do furo. É o que faz a aresta do braço de um canto encostar exatamente na quina."
+
+[derived.pin_len_max]
+formula = "grid/2 - pin_d/2"
+value   = 2.1
+note    = "Teto do macho: duas hastes perpendiculares se tocam aqui."
+
+[derived.passage_max]
+formula = "grid/2 - hole_d/2"
+value   = 2.0
+note    = "Tangência com a passagem transversal. Acima disso o macho come a seção livre do furo perpendicular — é por isso que pin_len de produção é 2.0 e não 2.1."
+
+[derived.edge_bore_min]
+formula = "hole_d + 2*wall"
+value   = 7.2
+note    = "Espessura mínima para caber um furo de BORDA. Laje fina não tem."
+
+[derived.shaft_len]
+formula = "pin_len - collar_depth"
+value   = 1.0
+note    = "Haste além do colar. Ela ALINHA; quem retém é o colar."
+
+# Laje: espessura fora do grid (BRICK com `thickness > 0`).
+# Uma célula tem 8mm porque é o mínimo para um furo de BORDA;
+# chão e parede não têm furo de borda e não precisam pagar por ele.
+[derived.slab_floor_1]
+formula = "collar_depth"
+value   = 1.0
+note    = "Fêmea de UM lado: abaixo disso não sobra encosto para o colar."
+
+[derived.slab_floor_2]
+formula = "2*collar_depth"
+value   = 2.0
+note    = "Fêmea dos DOIS lados: os rebaixos se encontram e o macho atravessa."
+
+[derived.slab_min_1]
+formula = "pin_len"
+value   = 2.0
+note    = "Fêmea de um lado, haste inteira dentro. = grid/4 — a laje de pele."
+
+[derived.slab_min_2]
+formula = "2*collar_depth + (pin_len - collar_depth)"
+value   = 3.0
+note    = "Fêmea dos dois lados, um furo servindo um lado por vez."
+
+[derived.slab_both]
+formula = "2*pin_len + gap"
+value   = 4.5
+note    = "Mesmo furo servindo os dois lados ao mesmo tempo, com folga."
+
+# ------------------------------------------------------------
+# Invariantes
+# ------------------------------------------------------------
+# Caem de graça da derivação. Se algum quebrar, o grid não fecha.
+# `equals` é conferido pelo check contra `formula`.
+
+[invariants.corner_sliver]
+formula = "inset - recess_d/2"
+equals  = "wall"
+value   = 1.6
+note    = "Lasca na quina da célula."
+
+[invariants.web_between_holes]
+formula = "grid - recess_d"
+equals  = "2*wall"
+value   = 3.2
+note    = "Alma entre dois rebaixos vizinhos."
+
+[invariants.edge_bar]
+formula = "(grid - hole_d)/2"
+value   = 2.0
+note    = "Seção da gaiola de 12 arestas, com os três eixos vazados. Caso extremo do sistema."
+
+# ------------------------------------------------------------
+# Validações
+# ------------------------------------------------------------
+# Os `id` são os mesmos de impl/python/fusionbrick/rules.py — o
+# contrato passa a ser a fonte deles, não mais uma cópia.
+# `fatal` impede gerar; `warn` é peça válida mas provavelmente
+# não é o que se quis.
+
+[[validations]]
+id       = "recess_vs_edge_bar"
+severity = "fatal"
+rule     = "hole_d * sqrt(2) > recess_d"
+message  = "rebaixo morde a barra da aresta"
+
+[[validations]]
+id       = "pin_len_max"
+severity = "fatal"
+rule     = "pin_len <= pin_len_max"
+message  = "macho encosta no perpendicular da célula receptora"
+
+[[validations]]
+id       = "pin_len_vs_collar"
+severity = "fatal"
+rule     = "pin_len > collar_depth"
+message  = "colar mais fundo que a protrusão: a haste não sai do colar"
+
+[[validations]]
+id       = "pin_len_positive"
+severity = "fatal"
+rule     = "pin_len > 0"
+message  = "macho sem comprimento"
+
+[[validations]]
+id       = "pin_vs_passage"
+severity = "warn"
+rule     = "pin_len <= passage_max"
+message  = "macho invade a passagem transversal"
+
+[[validations]]
+id       = "invariant_corner"
+severity = "warn"
+rule     = "corner_sliver == wall"
+message  = "lasca na quina divergiu da parede"
+
+[[validations]]
+id       = "invariant_web"
+severity = "warn"
+rule     = "web_between_holes == 2*wall"
+message  = "alma entre furos divergiu de 2×parede"
+
+# ------------------------------------------------------------
+# Escala fina
+# ------------------------------------------------------------
+[scales]
+fine = 2.5
+note = "Escala do acabamento, fora do volume de grid. O BRICK não expõe `skin` — nada o usava. Quem precisa é o DOCK, que hospeda dispositivo de dimensão arbitrária."
+
+# ------------------------------------------------------------
+# Casos
+# ------------------------------------------------------------
+# Os primitivos são NÚMEROS com fórmula — verificáveis comparando
+# valor. `cells`, `axis`, `face`, `thickness` e `center` são
+# COMPORTAMENTO: não têm valor para conferir, têm consequência.
+#
+# Um caso nomeia uma configuração e o que ela deve produzir. O
+# check pergunta ao core Python e mede o tamanho no echo do
+# OpenSCAD. Nada de framework: é a mesma comparação de número,
+# sobre outra pergunta.
+
+[[cases]]
+id     = "cell"
+note   = "A célula. Três eixos vazados, seis faces fêmeas — o caso extremo do sistema."
+params = { cells_x = 1, cells_y = 1, cells_z = 1 }
+expect = { size = [8.0, 8.0, 8.0], bores = 3, face_features = 6 }
+
+[[cases]]
+id     = "beam_3"
+note   = "Viga de 3 células. Verifica que o tamanho é múltiplo do grid e que os furos escalam por célula."
+params = { cells_x = 3, cells_y = 1, cells_z = 1 }
+expect = { size = [24.0, 8.0, 8.0], bores = 7, face_features = 14 }
+
+[[cases]]
+id     = "axis_solid"
+note   = "Eixo X sólido. REQ-005: com face `auto` (padrão), xn/xp viram plain. `recess` explícito num eixo sólido é erro."
+params = { axis_x = "solid" }
+expect = { size = [8.0, 8.0, 8.0], bores = 2, face_features = 4 }
+
+[[cases]]
+id     = "faces_plain"
+note   = "Faces lisas. Eixo continua vazado; some só o acabamento."
+params = { faces = "plain" }
+expect = { size = [8.0, 8.0, 8.0], bores = 3, face_features = 0 }
+
+[[cases]]
+id     = "slab_plate"
+note   = "Laje de grid/2 — a PLATE. Espessura fora do grid, eixos X/Y sólidos."
+params = { cells_x = 5, cells_y = 5, thickness = 4.0, axis_x = "solid", axis_y = "solid" }
+expect = { size = [40.0, 40.0, 4.0], bores = 25, face_features = 50 }
+
+[[cases]]
+id     = "hub_macro"
+note   = "HUB 3x3x3 com macro central. REQ-009: o recurso central mata os furos que alcança — sobram 4 de 9 na face Z."
+params = { cells_x = 3, cells_y = 3, cells_z = 3, center = "hole", center_size = 10.0 }
+expect = { size = [24.0, 24.0, 24.0], live_z_holes = 4 }

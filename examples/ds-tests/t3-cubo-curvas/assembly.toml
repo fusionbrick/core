@@ -1,0 +1,39 @@
+# GERADO por gen.py — edite o gerador, não este arquivo.
+
+[assembly]
+name = "t3-cubo-curvas"
+view_angle = 35
+intent = "Corpo de prova: cubo 10×10×10 de cantos arredondados — dois anéis de vigas + BEND 90° (R = 1,5 célula) e 8 postes"
+
+parts = [
+  { id = "vb-i", type = "brick", at = [2, 0, 0], size = [6, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "vd-i", type = "brick", at = [9, 2, 0], size = [1, 6, 1], color = [0.11, 0.11, 0.12] },
+  { id = "vt-i", type = "brick", at = [2, 9, 0], size = [6, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "ve-i", type = "brick", at = [0, 2, 0], size = [1, 6, 1], color = [0.11, 0.11, 0.12] },
+  { id = "cBD-i", type = "curve", at = [8, 0, 0], dir = [1, 0, 0], turn = [0, 1, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "cTD-i", type = "curve", at = [9, 8, 0], dir = [0, 1, 0], turn = [-1, 0, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "cTE-i", type = "curve", at = [1, 9, 0], dir = [-1, 0, 0], turn = [0, -1, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "cBE-i", type = "curve", at = [0, 1, 0], dir = [0, -1, 0], turn = [1, 0, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "poste0", type = "brick", at = [2, 0, 1], size = [1, 1, 8], color = [0.62, 0.63, 0.66] },
+  { id = "poste1", type = "brick", at = [7, 0, 1], size = [1, 1, 8], color = [0.62, 0.63, 0.66] },
+  { id = "poste2", type = "brick", at = [9, 2, 1], size = [1, 1, 8], color = [0.62, 0.63, 0.66] },
+  { id = "poste3", type = "brick", at = [9, 7, 1], size = [1, 1, 8], color = [0.62, 0.63, 0.66] },
+  { id = "poste4", type = "brick", at = [7, 9, 1], size = [1, 1, 8], color = [0.62, 0.63, 0.66] },
+  { id = "poste5", type = "brick", at = [2, 9, 1], size = [1, 1, 8], color = [0.62, 0.63, 0.66] },
+  { id = "poste6", type = "brick", at = [0, 7, 1], size = [1, 1, 8], color = [0.62, 0.63, 0.66] },
+  { id = "poste7", type = "brick", at = [0, 2, 1], size = [1, 1, 8], color = [0.62, 0.63, 0.66] },
+  { id = "vb-s", type = "brick", at = [2, 0, 9], size = [6, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "vd-s", type = "brick", at = [9, 2, 9], size = [1, 6, 1], color = [0.11, 0.11, 0.12] },
+  { id = "vt-s", type = "brick", at = [2, 9, 9], size = [6, 1, 1], color = [0.11, 0.11, 0.12] },
+  { id = "ve-s", type = "brick", at = [0, 2, 9], size = [1, 6, 1], color = [0.11, 0.11, 0.12] },
+  { id = "cBD-s", type = "curve", at = [8, 0, 9], dir = [1, 0, 0], turn = [0, 1, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "cTD-s", type = "curve", at = [9, 8, 9], dir = [0, 1, 0], turn = [-1, 0, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "cTE-s", type = "curve", at = [1, 9, 9], dir = [-1, 0, 0], turn = [0, -1, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+  { id = "cBE-s", type = "curve", at = [0, 1, 9], dir = [0, -1, 0], turn = [1, 0, 0], radius = 2, angle = 90, color = [0.97, 0.47, 0.1] },
+]
+
+groups = [
+  { id = "anel-inf", parts = ["vb-i", "vd-i", "vt-i", "ve-i", "cBD-i", "cTD-i", "cTE-i", "cBE-i"], note = "anel de baixo: 4 vigas + 4 curvas" },
+  { id = "postes", parts = ["poste0", "poste1", "poste2", "poste3", "poste4", "poste5", "poste6", "poste7"], note = "8 postes nas pontas das vigas" },
+  { id = "anel-sup", parts = ["vb-s", "vd-s", "vt-s", "ve-s", "cBD-s", "cTD-s", "cTE-s", "cBE-s"], note = "anel de cima fecha o cubo" },
+]

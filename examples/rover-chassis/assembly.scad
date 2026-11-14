@@ -147,10 +147,23 @@ module chassis_elbows() {
 // GAIOLA (roll cage)
 // ============================================================
 
-// Postes — PIN duplo empilhado (z 5..45) sobre os pinos
-// verticais dos trilhos, em x=17.5 e x=62.5
 post_xs = [17.5, 62.5];
 post_ys = [-2.5, 62.5];
+
+// ── HASTES DIAGONAIS (45°) ──────────────────────────────────
+// Varrem do topo do poste traseiro até a frente do piso.
+//
+// A 45° o vão vale Δ·√2, então os DOIS extremos precisam cair
+// em furo existente. Partindo de (62.5, 42.5) só dois Δ fecham:
+//   Δ=20 -> (42.5, 22.5)  viga 28.28mm  (curta, meio da gaiola)
+//   Δ=40 -> (22.5,  2.5)  viga 56.57mm  <- a longa, esta
+//
+// O extremo de baixo é o furo de BORDA do piso (z=2.5), não um
+// poste. Sem ele Δ=40 não existiria — só os postes davam
+// Δ ∈ {5,15,20,35}, nenhum alcançando a frente.
+diag_from = [62.5, 42.5];
+diag_span = 40;
+diag_len  = diag_span * sqrt(2);
 
 // PIN em pé: Rx(90) leva a viga (eixo Y) para +Z; os studs do
 // topo apontam -Y — espelha no lado direito pra ficarem pra fora
@@ -213,6 +226,34 @@ module long_rail_dowels() {
 }
 
 // ============================================================
+// DIAGONAIS DO COCKPIT (45°)
+// ============================================================
+// Viga de comprimento LIVRE: só as pontas conectam (ends=pin,
+// demais faces none). O comprimento de uma diagonal a 45° entre
+// dois pontos do grid vale Δ·√2, que nunca é múltiplo do passo —
+// e não precisa ser, já que as posições intermediárias não têm
+// função aqui. De quebra, economiza filamento.
+// Orientação aplicada UMA VEZ. Tudo que vai na diagonal passa
+// por aqui, então viga e conectores não podem divergir — foi
+// assim que a versão anterior saiu apontando para trás.
+//
+// +Y local --rotate([90,0,0])--> +Z --rotate([0,225,0])-->
+// (−0.707, 0, −0.707) = para a frente e para baixo.
+module at_diagonal(py) {
+    translate([diag_from[0], py, diag_from[1] + ez2])
+        rotate([0, 225, 0])
+            rotate([90, 0, 0])
+                children();
+}
+
+module cockpit_diagonals() {
+    for (py = post_ys)
+        at_diagonal(py)
+            pin(top = "none", bottom = "none", sides = "none",
+                ends = "pin", len = diag_len);
+}
+
+// ============================================================
 // MONTAGEM
 // ============================================================
 
@@ -228,6 +269,7 @@ if (!collisions_only) {
         side_rails(); bumpers(); chassis_elbows();
         cage_posts(); cage_vertices();
         cage_cross_beams(); cage_long_rails();
+        cockpit_diagonals();
     }
 
     // Conectores

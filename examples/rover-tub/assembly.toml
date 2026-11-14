@@ -1,0 +1,65 @@
+# ============================================================
+# ROVER-TUB — rover 4×4 de caçamba aberta
+# ============================================================
+# Chassi de duas longarinas e um piso com grade de fixação,
+# carroceria aberta em cima, para-choques e santantônio traseiro.
+#
+# Vista de cima (1 célula = 8mm), X = frente → trás:
+#
+#        x: -1 0 1 2 . . . . . . 9 10 11 12
+#           ┌─┬────────────────────────┬─┐
+#   y=0     │P│ lateral_e  (●roda) (●) │P│   ← rodas fora, no yn
+#   y=1..5  │ │F│     piso          │T │ │
+#   y=6     │ │ lateral_d  (●roda) (●) │ │
+#           └─┴────────────────────────┴─┘
+#      P = para-choque · F/T = frente/traseira · colunas em x=10..11
+#
+# Alturas: longarinas e piso z=0 · carroceria z=1..2 · colunas
+# z=3..5 · travessa z=6. Rodas Ø32 (4 células) no eixo y das
+# longarinas, centro em z=0.5 célula → vão livre de 12mm.
+# ============================================================
+
+[assembly]
+name   = "rover-tub"
+intent = "Rover 4×4 de caçamba aberta: longarinas, piso com grade de fixação, carroceria, para-choques e santantônio"
+
+parts = [
+  # --- chassi -------------------------------------------------
+  # Longarinas: machos para dentro, no piso. O eixo y furado é
+  # onde entram os eixos das rodas (face externa = recess auto).
+  { id = "longarina_e",  type = "brick", at = [0, 0, 0], size = [12, 1, 1], holes = "xyz", faces = { left = "stud" }, color = [0.22, 0.24, 0.27] },
+  { id = "longarina_d",  type = "brick", at = [0, 6, 0], size = [12, 1, 1], holes = "xyz", faces = { right = "stud" }, color = [0.22, 0.24, 0.27] },
+  # Piso: grade de recess em cima = área de fixação de eletrônica
+  { id = "piso",         type = "brick", at = [0, 1, 0], size = [12, 5, 1], holes = "xyz", color = [0.30, 0.32, 0.36] },
+  # Para-choques: machos para dentro, nas pontas das longarinas e do piso
+  { id = "parachoque_f", type = "brick", at = [-1, 0, 0], size = [1, 7, 1], holes = "xz", faces = { front = "stud" }, color = [0.22, 0.24, 0.27] },
+  { id = "parachoque_t", type = "brick", at = [12, 0, 0], size = [1, 7, 1], holes = "xz", faces = { back = "stud" }, color = [0.22, 0.24, 0.27] },
+
+  # --- carroceria (aberta em cima) ------------------------------
+  { id = "lateral_e",    type = "brick", at = [0, 0, 1], size = [12, 1, 2], holes = "z", faces = { bottom = "stud" }, color = [0.93, 0.93, 0.90] },
+  { id = "lateral_d",    type = "brick", at = [0, 6, 1], size = [12, 1, 2], holes = "z", faces = { bottom = "stud" }, color = [0.93, 0.93, 0.90] },
+  # Frente e traseira: 5 junções no piso, em linha mas em posições
+  # diferentes — já é rígida (ASM-004). Sem eixo y, as laterais
+  # ficam lisas por fora: furo só onde há encaixe.
+  { id = "frente",       type = "brick", at = [0, 1, 1], size = [1, 5, 2], holes = "z", faces = { bottom = "stud" }, color = [0.93, 0.93, 0.90] },
+  { id = "traseira",     type = "brick", at = [11, 1, 1], size = [1, 5, 2], holes = "z", faces = { bottom = "stud" }, color = [0.93, 0.93, 0.90] },
+
+  # --- santantônio -----------------------------------------------
+  # Colunas de 2 células de base: uma coluna 1×1 giraria (ASM-004)
+  { id = "coluna_e",     type = "brick", at = [10, 0, 3], size = [2, 1, 3], holes = "z", faces = { bottom = "stud", top = "stud" }, color = [0.95, 0.52, 0.12] },
+  { id = "coluna_d",     type = "brick", at = [10, 6, 3], size = [2, 1, 3], holes = "z", faces = { bottom = "stud", top = "stud" }, color = [0.95, 0.52, 0.12] },
+  { id = "travessa",     type = "brick", at = [10, 0, 6], size = [2, 7, 1], holes = "z", color = [0.95, 0.52, 0.12] },
+
+  # --- rodas Ø32 ---------------------------------------------------
+  { id = "roda_ef", type = "wheel", at = [2, -1, 0], on = "longarina_e.right", diameter = 4 },
+  { id = "roda_et", type = "wheel", at = [9, -1, 0], on = "longarina_e.right", diameter = 4 },
+  { id = "roda_df", type = "wheel", at = [2,  7, 0], on = "longarina_d.left", diameter = 4 },
+  { id = "roda_dt", type = "wheel", at = [9,  7, 0], on = "longarina_d.left", diameter = 4 },
+]
+
+groups = [
+  { id = "chassi",      parts = ["piso", "longarina_e", "longarina_d", "parachoque_f", "parachoque_t"], note = "Longarinas encaixam no piso pelos machos laterais; para-choques fecham as pontas." },
+  { id = "carroceria",  parts = ["lateral_e", "lateral_d", "frente", "traseira"], note = "Laterais sobre as longarinas; frente e traseira sobre o piso, entre as laterais." },
+  { id = "santantonio", parts = ["coluna_e", "coluna_d", "travessa"], note = "Colunas sobre as laterais, travessa por cima." },
+  { id = "rodas",       parts = ["roda_ef", "roda_et", "roda_df", "roda_dt"], note = "Roda no eixo, eixo no rebaixo da longarina." },
+]

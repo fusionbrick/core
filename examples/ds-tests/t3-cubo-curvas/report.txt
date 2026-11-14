@@ -1,0 +1,14 @@
+ok    t3-cubo-curvas: 16 blocos · 0 rodas · 8 curvas · 0 encaixes por pino · 32 cavilhas · 0 eixos
+info  ASM-004  poste0: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste1: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste2: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste3: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste4: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste5: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste6: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste7: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+
+t3-cubo-curvas: 80 × 80 × 80 mm
+  estruturais 24 · impressas 56 (cavilhas 32) · STLs únicos 4 · componentes 0 · pinos livres 0
+  resolução 30.0 peças/100mm · maior peça 64mm
+  dica: 32/56 das peças impressas são cavilhas: use dowel_every = 3, pinos impressos (studs) onde não há ponta redonda, ou contatos mais curtos

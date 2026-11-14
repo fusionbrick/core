@@ -1,0 +1,57 @@
+ok    buggy-vt3: 63 blocos · 4 rodas · 4 nós · 2 vigas · 8 curvas · 23 componentes · 528 encaixes por pino · 102 cavilhas · 4 eixos
+AVISO ASM-012  lat1b_e: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat2b_e: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat3b_e: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat4b_e: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat0b_d: precisaria entrar em −x, −y ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat4a_d: precisaria entrar em −x, −y, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat4b_d: precisaria entrar em −x, +x, −y, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  frente2: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  tras2: precisaria entrar em +x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  frente3: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  tras3: precisaria entrar em +x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  frente4: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  tras4: precisaria entrar em +x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat1a_d: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat1b_d: precisaria entrar em −x, +x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat2a_d: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat2b_d: precisaria entrar em −x, +x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat3a_d: precisaria entrar em −x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  lat3b_d: precisaria entrar em −x, +x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trilho_y2: precisaria entrar em −x, +x ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trilho_y13: precisaria entrar em −x, +x ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+info  ASM-010  vão livre do chão: 36mm
+info  ASM-004  bico_f: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  bico_t: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco_t_poste_e: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pe_coluna_e: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  coluna_a_e-v: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco_t_poste_d: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pe_coluna_d: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  coluna_a_d-v: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+
+buggy-vt3: 304 × 208 × 160 mm
+  estruturais 77 · impressas 187 (cavilhas 102) · STLs únicos 31 · componentes 23 · pinos livres 0
+  resolução 25.3 peças/100mm · maior peça 208mm
+  sem alertas de qualidade

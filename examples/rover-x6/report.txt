@@ -1,0 +1,39 @@
+ok    rover-x6: 67 blocos · 6 rodas · 10 nós · 5 vigas · 16 curvas · 29 componentes · 862 encaixes por pino · 86 cavilhas · 6 eixos
+info  ASM-010  vão livre do chão: 40mm
+info  ASM-004  bico_f: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  bico_t: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  bogie_t_e: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  perna_t_e-v: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  bogie_f_e: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  perna_f_e-v: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  bogie_t_d: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  perna_t_d-v: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  bogie_f_d: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  perna_f_d-v: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  q_inf-o: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_x8_y2: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_x8_y11: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_x13_y2: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_x13_y11: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_x22_y2: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_x22_y11: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_x25_y2: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_x25_y11: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  q_sup-l: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  q_sup-o: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco0-pe: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco0-tr: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco0-pd: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco1-pe: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco1-tr: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  arco1-pd: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  braco-v: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pendural_x13_y3: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pendural_x13_y10: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pendural_x23_y3: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  pendural_x23_y10: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+
+rover-x6: 352 × 224 × 216 mm
+  estruturais 98 · impressas 196 (cavilhas 86) · STLs únicos 37 · componentes 29 · pinos livres 0
+  resolução 27.8 peças/100mm · maior peça 192mm
+  sem alertas de qualidade

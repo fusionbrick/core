@@ -1,0 +1,70 @@
+# ============================================================
+# ROVER-SCOUT — rover 6×6 de exploração
+# ============================================================
+# Seis rodas Ø24, deck em LAJE de 4mm, caçamba aberta atrás,
+# torre de sensores na frente com mastro de câmera GIRATÓRIO.
+#
+# Vista lateral (X-Z), x = frente → trás:
+#
+#            ┃ mastro (gira)
+#         ┌──┸──────┐
+#         │ cabeça  │
+#         └─┬────┬──┘        ┌───────── caçamba ─────────┐
+#           │torre│          │                           │
+#  ─────────┴────┴──────────────── deck (laje 4mm) ──────────
+#  ═══════════════════ longarinas ════════════════════════════
+#     ◯ Ø24               ◯                    ◯
+#
+# Por que laje: o deck é chão, não viga — 4mm (grid/2) bastam e
+# a laje compõe com o grid (duas fecham uma célula). Por isso tudo
+# acima dele fica em Z = 1.5, meia célula.
+#
+# ASM-006 em ação: a laje de 4mm não aceita macho dos DOIS lados no
+# mesmo furo (pede 4.5mm). As paredes da caçamba ficam em y=1 e
+# y=5 — por dentro das longarinas (y=0 e y=6) — e não disputam furo.
+# ============================================================
+
+[assembly]
+name   = "rover-scout"
+intent = "Rover 6×6 de exploração: deck em laje, caçamba aberta, torre de sensores e mastro de câmera giratório"
+
+parts = [
+  # --- chassi -------------------------------------------------
+  { id = "longarina_e",  type = "brick", at = [0, 0, 0], size = [14, 1, 1], holes = "xy", faces = { top = "stud" }, color = [0.22, 0.24, 0.27] },
+  { id = "longarina_d",  type = "brick", at = [0, 6, 0], size = [14, 1, 1], holes = "xy", faces = { top = "stud" }, color = [0.22, 0.24, 0.27] },
+  # Para-choques sem machos: o encontro recess × recess com as pontas
+  # das longarinas recebe PIN (cavilha) — nada fica exposto
+  { id = "parachoque_f", type = "brick", at = [-1, 0, 0], size = [1, 7, 1], holes = "x", color = [0.95, 0.52, 0.12] },
+  { id = "parachoque_t", type = "brick", at = [14, 0, 0], size = [1, 7, 1], holes = "x", color = [0.95, 0.52, 0.12] },
+  # Deck: laje de grid/2. Eixos X/Y sólidos (laje não tem furo de borda)
+  { id = "deck",         type = "brick", at = [0, 0, 1], size = [14, 7, 1], thickness = 4.0, holes = "z", color = [0.36, 0.38, 0.42] },
+
+  # --- caçamba (aberta em cima) ----------------------------------
+  { id = "cacamba_e",    type = "brick", at = [6, 1, 1.5], size = [8, 1, 1], holes = "z", faces = { bottom = "stud" }, color = [0.96, 0.80, 0.30] },
+  { id = "cacamba_d",    type = "brick", at = [6, 5, 1.5], size = [8, 1, 1], holes = "z", faces = { bottom = "stud" }, color = [0.96, 0.80, 0.30] },
+  { id = "cacamba_f",    type = "brick", at = [6, 2, 1.5], size = [1, 3, 1], holes = "z", faces = { bottom = "stud" }, color = [0.96, 0.80, 0.30] },
+  { id = "cacamba_t",    type = "brick", at = [13, 2, 1.5], size = [1, 3, 1], holes = "z", faces = { bottom = "stud" }, color = [0.96, 0.80, 0.30] },
+
+  # --- torre de sensores -----------------------------------------
+  { id = "torre",        type = "brick", at = [2, 2, 1.5], size = [2, 3, 2], holes = "z", faces = { bottom = "stud", top = "stud" }, color = [0.93, 0.93, 0.90] },
+  { id = "cabeca",       type = "brick", at = [1, 1, 3.5], size = [4, 5, 1], holes = "z", color = [0.93, 0.93, 0.90] },
+  # Mastro 1×1: uma junção só, de propósito — gira (declarado em hinges)
+  { id = "mastro",       type = "brick", at = [2, 3, 4.5], size = [1, 1, 3], holes = "z", faces = { bottom = "stud" }, color = [0.95, 0.52, 0.12] },
+
+  # --- rodas Ø24 ---------------------------------------------------
+  { id = "roda_e1", type = "wheel", at = [1,  -1, 0], on = "longarina_e.right", diameter = 3 },
+  { id = "roda_e2", type = "wheel", at = [6,  -1, 0], on = "longarina_e.right", diameter = 3 },
+  { id = "roda_e3", type = "wheel", at = [11, -1, 0], on = "longarina_e.right", diameter = 3 },
+  { id = "roda_d1", type = "wheel", at = [1,   7, 0], on = "longarina_d.left", diameter = 3 },
+  { id = "roda_d2", type = "wheel", at = [6,   7, 0], on = "longarina_d.left", diameter = 3 },
+  { id = "roda_d3", type = "wheel", at = [11,  7, 0], on = "longarina_d.left", diameter = 3 },
+]
+
+hinges = ["mastro"]
+
+groups = [
+  { id = "chassi",  parts = ["longarina_e", "longarina_d", "deck", "parachoque_f", "parachoque_t"], note = "Deck por cima das longarinas; para-choques por cavilha nas pontas." },
+  { id = "cacamba", parts = ["cacamba_e", "cacamba_d", "cacamba_f", "cacamba_t"], note = "Laterais da caçamba por dentro das longarinas (ASM-006)." },
+  { id = "sensores", parts = ["torre", "cabeca", "mastro"], note = "Torre no deck, cabeça na torre, mastro giratório na cabeça." },
+  { id = "rodas",   parts = ["roda_e1", "roda_e2", "roda_e3", "roda_d1", "roda_d2", "roda_d3"] },
+]
