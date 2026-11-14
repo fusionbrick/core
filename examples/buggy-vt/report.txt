@@ -1,0 +1,17 @@
+ok    buggy-vt: 20 blocos · 4 rodas · 4 nós · 2 vigas · 13 componentes · 136 encaixes por pino · 30 cavilhas · 4 eixos
+AVISO ASM-012  trilho_e: precisaria entrar em −x, +x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+AVISO ASM-012  trilho_d: precisaria entrar em −x, +x, −z ao mesmo tempo — não monta à mão
+      sugestão: troque a ordem nos groups, monte um subconjunto antes (sub = true no grupo), ou deixe flat as faces que travam o segundo movimento
+info  ASM-010  vão livre do chão: 28mm
+info  ASM-004  poste_te: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_td: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_me: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  poste_md: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  coluna_a_e: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+info  ASM-004  coluna_a_d: membro de treliça — preso pelas duas pontas, só gira sobre o próprio eixo
+
+buggy-vt: 200 × 112 × 112 mm
+  estruturais 26 · impressas 64 (cavilhas 30) · STLs únicos 17 · componentes 13 · pinos livres 0
+  resolução 13.0 peças/100mm · maior peça 176mm
+  dica: baixa resolução (13 peças/100mm; kit técnico fica em 15–40): aumente a escala ou quebre blocos grandes em vigas
