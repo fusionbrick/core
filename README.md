@@ -16,44 +16,46 @@
 
 FusionBrick é um sistema de componentes modulares paramétricos para impressão 3D. Qualquer componente conecta em qualquer outro — em qualquer face, em qualquer direção — via press-fit, sem ferramentas.
 
-![Montagem em U](examples/u-channel/assembly.gif)
+![Rover Orion — 174 peças impressas, montado e explodido](examples/rover-orion/assembly.gif)
 
 ---
 
 ## Componentes
 
-Quatro peças. O sistema colapsou de treze para quatro porque a maioria era o mesmo objeto em configuração diferente.
+Oito peças na montagem. Bloco, viga, placa e tampa são o mesmo BRICK com padrões diferentes; curva, diagonal, roda e componente cobrem o que um bloco não faz.
 
-| Componente | Preview | Função | Fonte |
+| Peça | Preview | Função | Fonte |
 | --- | :---: | --- | --- |
-| **BRICK** | <img src="renders/img/brick.gif" width="140" alt="BRICK"> | Bloco universal. `cells_x/y/z`, eixos `bored`/`solid`, faces `recess`/`pin`/`plain`. Sempre ortogonal. | `impl/openscad/brick.scad` |
-| **PIN** | <img src="renders/img/pin.gif" width="140" alt="PIN"> | O único macho solto. Uma ou duas pontas, qualquer escala. Quem retém é o colar. | `impl/openscad/pin.scad` |
-| **NODE** | <img src="renders/img/node.gif" width="140" alt="NODE"> | Única peça fora do ortogonal. N portas em ângulo livre, declaradas por direção. | `impl/openscad/node.scad` |
-| **DOCK** | <img src="renders/img/dock.gif" width="140" alt="DOCK"> | Adapter: hospeda dispositivo externo. Por dentro exclusivo, por fora BRICK. | `impl/openscad/dock.scad` |
+| **`brick`** — bloco | <img src="renders/img/parts/brick.gif" width="140" alt="bloco"> | A peça-base. Qualquer tamanho em células, furos por eixo e, em cada face, pino, encaixe ou liso. Sempre ortogonal. | `impl/openscad/brick.scad` |
+| **`beam`** — viga | <img src="renders/img/parts/beam.gif" width="140" alt="viga"> | Barra 1×1×n furada nos três eixos, pontas redondas. A estrutura de quase tudo. | variante de `brick.scad` |
+| **`plate`** — placa | <img src="renders/img/parts/plate.gif" width="140" alt="placa"> | Chapa de 4 mm furada, para pisos e bases. | variante de `brick.scad` |
+| **`cover`** — tampa | <img src="renders/img/parts/cover.gif" width="140" alt="tampa"> | Chapa lisa que fecha por cima, com pinos só na borda de baixo. | variante de `brick.scad` |
+| **`curve`** — curva | <img src="renders/img/parts/curve.gif" width="140" alt="curva"> | Viga que vira 90° ou 180°, em três raios. A saída cai no grid. | `impl/openscad/curve.scad` |
+| **`strut`** — diagonal | <img src="renders/img/parts/strut.gif" width="140" alt="diagonal"> | Viga inclinada entre duas células, com os nós das pontas criados sozinhos. Só ângulos que fecham no grid (3-4-5, 5-12-13…). | `impl/openscad/node.scad` + `brick.scad` |
+| **`wheel`** — roda | <img src="renders/img/parts/wheel.gif" width="140" alt="roda"> | Roda com eixo incluso, de Ø24 a Ø112 mm, três tipos de pneu. | `impl/openscad/wheel.scad` + `axle.scad` |
+| **`component`** — componente | <img src="renders/img/parts/component.gif" width="140" alt="componente"> | O que se compra pronto (bateria, placa, motor, sensor). Não imprime: reserva o volume com a medida real. | — |
+
+O **PIN** (`impl/openscad/pin.scad`) é a cavilha: o pino solto de duas pontas que une dois encaixes frente a frente. O compilador põe sozinho.
+
+### Encaixes
+
+| Encaixe | O que é |
+| --- | --- |
+| `stud` — pino | macho que já sai impresso na face |
+| `socket` — encaixe | furo com rebaixo que recebe um pino; padrão de toda face furada |
+| `flat` — liso | face sem nada |
+| cavilha | PIN de duas pontas entre dois `socket` |
 
 ### Variantes persistidas
 
-Configuração que se repete vira arquivo, não peça nova: importa o BRICK, reatribui parâmetros e ganha preview e STL automáticos. Não conta no catálogo — é o mesmo componente.
+Configuração que se repete vira arquivo, não peça nova: importa o BRICK, reatribui parâmetros e ganha preview e STL automáticos.
 
 | Variante | Preview | Configuração | Fonte |
 | --- | :---: | --- | --- |
-| **HUB** | <img src="renders/img/hub.gif" width="140" alt="HUB"> | BRICK `3×3×3` com furo macro `Ø10` no centro. É o que era o ATOM. | `impl/openscad/hub.scad` |
-| **PLATE** | <img src="renders/img/plate.gif" width="140" alt="PLATE"> | Chão e parede. Laje de `4mm` (`grid/2`), campo de furos fêmea nos dois lados, costas planas. | `impl/openscad/plate.scad` |
+| **HUB** | <img src="renders/img/hub.gif" width="140" alt="HUB"> | BRICK `3×3×3` com furo macro `Ø10` no centro. | `impl/openscad/hub.scad` |
+| **DOCK** | <img src="renders/img/dock.gif" width="140" alt="DOCK"> | Hospeda dispositivo externo. Por dentro exclusivo, por fora BRICK. | `impl/openscad/dock.scad` |
 
-### O que o BRICK absorveu
-
-| Antes | Configuração |
-| --- | --- |
-| ATOM | `1×1×1`, eixos `bored`, faces `recess` |
-| PLATE `n×m` | `n×m×1` |
-| Viga de `n` células | `1×1×n`, eixo longo `bored`, laterais `solid` |
-| CORNER | `1×1×n`, duas faces adjacentes `pin` |
-| VERTEX | `1×1×1`, eixos `solid`, três faces `pin` |
-| ELBOW 90° | `1×1×1`, duas faces adjacentes `pin` |
-
-**Toda união ortogonal é um BRICK** — as portas de uma união a 90° caem exatamente nos centros de face da célula. Só ângulo não-ortogonal precisa de NODE.
-
-BRIDGE, LINK e LINK-ONESIDE viraram **PIN** em escalas e formas diferentes.
+As peças antigas (ATOM, LINK, BRIDGE, CORNER, VERTEX, ELBOW) viraram configurações do BRICK ou do PIN.
 
 ---
 
@@ -218,14 +220,15 @@ parts = [
 
 Os nomes das peças no OpenSCAD (`cells_x`, `face_zn = "pin"`…) não mudaram, e os nomes antigos da montagem (`liftarm`, `bend`, `mock`, `cells`…) continuam aceitos. A ponte entre as camadas está em [`spec/assembly.md` § Nomes](spec/assembly.md#nomes).
 
-| `buggy-vt2` — a partir de foto, alta resolução (99 peças) | `buggy-vt` — a partir de foto: gaiola com diagonais | `rover-tub` — 4×4, caçamba aberta | `rover-scout` — 6×6, deck em placa |
+| `rover-orion` — rover de exploração 6×6 (174 peças) | `buggy-vt2` — a partir de foto, alta resolução (99 peças) | `buggy-vt` — a partir de foto: gaiola com diagonais | `rover-scout` — 6×6, deck em placa |
 | --- | --- | --- | --- |
-| ![buggy-vt2](examples/buggy-vt2/assembly.png) | ![buggy-vt](examples/buggy-vt/assembly.png) | ![rover-tub](examples/rover-tub/assembly.png) | ![rover-scout](examples/rover-scout/assembly.png) |
+| ![rover-orion](examples/rover-orion/assembly.png) | ![buggy-vt2](examples/buggy-vt2/assembly.png) | ![buggy-vt](examples/buggy-vt/assembly.png) | ![rover-scout](examples/rover-scout/assembly.png) |
 
 ```bash
-make assemble-check NAME=rover-tub   # valida em milissegundos
-make assemble NAME=rover-tub         # STLs + .scad + BOM + passos + imagens
-make assemble-collide NAME=rover-tub # interseção exata par a par (CGAL)
+make assemble-check NAME=rover-orion   # valida em milissegundos
+make assemble-review NAME=rover-orion  # ficha de qualidade (APTO / NÃO APTO)
+make assemble NAME=rover-orion         # STLs + .scad + BOM + passos + imagens
+make assemble-collide NAME=rover-orion # interseção exata par a par (CGAL)
 ```
 
 ---
@@ -270,13 +273,23 @@ FusionBrick/
 - [x] Lei do Grid formalizada (`spec/constitution.md`, `spec/rules.md`)
 - [x] `make assembly` — montagens isométricas com teste de colisão
 
-### v0.3.0 — Paramétrico
+### v0.3.0 — Montagem por descrição ✅
+
+- [x] Grid de 8 mm derivado do furo, conector desenhado uma vez
+- [x] Peças: bloco, viga, placa, tampa, curva, diagonal, roda, componente
+- [x] Compilador de montagem (`assembly.toml`) com regras ASM-### e ficha de qualidade
+- [x] Exemplos: buggies, corpos de prova e o Rover Orion
+
+### v0.4.0 — Paramétrico
 
 - [ ] Seleção de padrão de furos (bordas, cantos, todos)
 - [ ] Suporte multi-escala (grid derivado de hole_d + wall)
 - [ ] Upload MakerWorld PMM
 
-### v0.4.0+ — Futuro
+### v0.5.0+ — Futuro
+
+- [ ] Pino de giro (suspensão e braços articulados)
+- [ ] Cubo motor–roda
 
 - [ ] Canais para condução elétrica
 - [ ] Conectores magnéticos
