@@ -42,11 +42,11 @@ def _core():
     here = os.path.dirname(os.path.realpath(__file__))
 
     # Dois modos de instalação:
-    #   symlink  -> o core vive em impl/python/, dois níveis acima
+    #   symlink  -> o core vive em impl/python/ (plugins/fusion360/FusionBrick → ../../../impl/python)
     #   vendor   -> o core foi copiado para DENTRO do add-in
     # Tenta o vendorizado primeiro: quem distribuiu quis aquele.
     candidates = (here, os.path.normpath(
-        os.path.join(here, "..", "..", "python")))
+        os.path.join(here, "..", "..", "..", "impl", "python")))
     for cand in candidates:
         if os.path.isdir(os.path.join(cand, "fusionbrick")):
             if cand not in sys.path:

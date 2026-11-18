@@ -9,7 +9,7 @@ include $(dir $(lastword $(MAKEFILE_LIST)))variables.mk
 # Desenvolvimento usa SYMLINK, não cópia: você edita no repo e o
 # Fusion carrega a versão nova ao dar Stop → Run no add-in.
 #
-# Copiar quebraria o import do core. O add-in acha `impl/python/`
+# Copiar quebraria o import do core. O add-in acha `impl/python/` (três níveis acima de plugins/fusion360/FusionBrick)
 # subindo dois níveis a partir da própria pasta; fora do repo esse
 # caminho não existe. Para distribuir existe `fusion-vendor`, que
 # empacota o core DENTRO da pasta do add-in.

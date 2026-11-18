@@ -76,7 +76,7 @@ Adicionar um `.scad` em `impl/openscad/` ou um `examples/<nome>/assembly.scad` j
 
 ## Fronteiras e o que não existe no repositório
 
-- `impl/` tem **apenas** `openscad/`. `impl/fusion360/` e `impl/manual/`, listados como estrutura no `README.md`, não existem como diretórios — são roadmap.
+- `impl/` tem `openscad/` e `python/`; o add-in do Fusion fica em `plugins/fusion360/`. `impl/manual/`, listado como estrutura no `README.md`, não existe como diretórios — são roadmap.
 - Não há código de aplicação, servidor, HTTP, banco de dados ou gerenciador de pacotes: não existem `go.mod`, `package.json` ou equivalentes. O diretório `apps/*` está presente na árvore de trabalho vazio e sem nenhum arquivo versionado (`git ls-files apps` não retorna nada), logo não faz parte do sistema.
 - Não há suíte de testes automatizada nem CI configurado no repositório; a verificação é a descrita em [Testes](testes.md).
 
