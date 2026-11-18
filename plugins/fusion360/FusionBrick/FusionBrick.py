@@ -1,7 +1,7 @@
 """
 Add-in FusionBrick — gera peças do design system no Fusion 360.
 
-spec: ../../../spec/    core: ../../python/fusionbrick/
+spec: ../../../spec/    core: ../../../impl/python/fusionbrick/
 
 RECARGA EM DESENVOLVIMENTO
 O Fusion mantém os módulos Python em cache entre Stop e Run. Ele

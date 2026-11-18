@@ -169,7 +169,7 @@ ASM_VIDEO_FPS    ?= 30
 # Fusion 360
 # ------------------------------------------------------------
 FUSION_ADDIN_NAME ?= FusionBrick
-FUSION_ADDIN_SRC  ?= impl/fusion360/$(FUSION_ADDIN_NAME)
+FUSION_ADDIN_SRC  ?= plugins/fusion360/$(FUSION_ADDIN_NAME)
 FUSION_PY_CORE    ?= impl/python
 FUSION_PYTHON     ?= python3
 

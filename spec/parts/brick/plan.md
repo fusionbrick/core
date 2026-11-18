@@ -12,7 +12,7 @@ Contrato: [`contracts.toml`](contracts.toml) · Status: [`tasks.md`](tasks.md)
 | --- | --- | --- | --- |
 | **OpenSCAD** | `impl/openscad/brick.scad` | tudo: células, pele, laje, eixos, faces, recurso central, presets | `make spec-check` [3] · `assert` no próprio arquivo |
 | **Python (core)** | `impl/python/fusionbrick/` | primitivos, derivados, invariantes, regras, posições de furo/face | `make spec-check` [2] · 19 testes |
-| **Fusion 360** | `impl/fusion360/FusionBrick/` | célula `1×1×1` apenas | nada automático — `adsk` só existe dentro do Fusion |
+| **Fusion 360** | `plugins/fusion360/FusionBrick/` | célula `1×1×1` apenas | nada automático — `adsk` só existe dentro do Fusion |
 | **Make** | `hack/automations/variables.mk` | injeta os primitivos em toda chamada do OpenSCAD | `make spec-check` [4] |
 
 O OpenSCAD é a implementação de referência: é a única completa.

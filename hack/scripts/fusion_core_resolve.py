@@ -17,7 +17,7 @@ if not installed or not os.path.exists(installed):
 
 entry = os.path.join(installed, "BrickCommand.py")
 here = os.path.dirname(os.path.realpath(entry))
-candidates = (here, os.path.normpath(os.path.join(here, "..", "..", "python")))
+candidates = (here, os.path.normpath(os.path.join(here, "..", "..", "..", "impl", "python")))
 
 hit = next((c for c in candidates
             if os.path.isdir(os.path.join(c, "fusionbrick"))), None)

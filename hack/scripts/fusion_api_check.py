@@ -18,7 +18,7 @@ import pathlib
 import sys
 
 src = pathlib.Path(sys.argv[1] if len(sys.argv) > 1
-                   else "impl/fusion360/FusionBrick")
+                   else "plugins/fusion360/FusionBrick")
 
 pkgs = sorted(glob.glob(os.path.expanduser(
     "~/Library/Application Support/Autodesk/webdeploy/production/*/"

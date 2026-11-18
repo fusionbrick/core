@@ -1,6 +1,6 @@
 # Add-in do Fusion 360 — desenvolvimento e teste
 
-Fluxo de trabalho para `impl/fusion360/`. Automação em [`fusion.mk`](fusion.mk); config em [`variables.mk`](variables.mk).
+Fluxo de trabalho para `plugins/fusion360/`. Automação em [`fusion.mk`](fusion.mk); config em [`variables.mk`](variables.mk).
 
 ---
 
@@ -15,8 +15,8 @@ make fusion-status
 
 ```
 pasta de add-ins : ~/Library/.../Autodesk Fusion 360/API/AddIns
-fonte no repo    : .../impl/fusion360/FusionBrick
-instalação       : SYMLINK ok -> .../impl/fusion360/FusionBrick
+fonte no repo    : .../plugins/fusion360/FusionBrick
+instalação       : SYMLINK ok -> .../plugins/fusion360/FusionBrick
 ```
 
 **Por que symlink e não cópia.** Você edita no repo e o Fusion vê a mudança — não há passo de sincronizar. E cópia **quebraria o import do core**: o add-in alcança `impl/python/` subindo dois níveis, caminho que não existe fora do repo. Para distribuir existe `fusion-vendor`, que embute o core.
