@@ -96,7 +96,7 @@ System premises: [spec/constitution.md](spec/constitution.md) · Grid Law and jo
 
 1. Clone the repository
 ```bash
-git clone https://github.com/wguilherme/fusionbrick.git
+git clone https://github.com/fusionbrick/core.git
 ```
 
 2. Open in OpenSCAD
@@ -268,8 +268,8 @@ Want to add a new implementation? Read [CONTRIBUTING.md](CONTRIBUTING.md).
 
 FusionBrick is open source and community-driven.
 
-- 🐛 **Found a bug?** Open an [issue](https://github.com/wguilherme/fusionbrick/issues)
-- 💡 **Have an idea?** Start a [discussion](https://github.com/wguilherme/fusionbrick/discussions)
+- 🐛 **Found a bug?** Open an [issue](https://github.com/fusionbrick/core/issues)
+- 💡 **Have an idea?** Start a [discussion](https://github.com/fusionbrick/core/discussions)
 - 🔧 **Want to contribute?** Read [CONTRIBUTING.md](CONTRIBUTING.md)
 - 🖨️ **Printed something cool?** Share it on MakerWorld tagging **#fusionbrick**
 

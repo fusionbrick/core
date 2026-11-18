@@ -101,7 +101,7 @@ asdf install  # lê a versão de .tool-versions (2021.01)
 ### 2. Clonar e abrir
 
 ```bash
-git clone https://github.com/wguilherme/FusionBrick.git
+git clone https://github.com/fusionbrick/core.git
 cd FusionBrick
 open impl/openscad/brick.scad
 ```
@@ -306,7 +306,7 @@ FusionBrick/
 | FreeCAD | 🔜 Planejado |
 | MakerWorld PMM | 🔜 Planejado |
 
-Quer contribuir? [Abra uma issue](https://github.com/wguilherme/FusionBrick/issues) ou envie um PR.
+Quer contribuir? [Abra uma issue](https://github.com/fusionbrick/core/issues) ou envie um PR.
 
 ---
 

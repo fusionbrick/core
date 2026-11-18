@@ -64,13 +64,13 @@ make fusion-unlink
 
 Step-by-step development workflow: [`hack/automations/fusion.md`](hack/automations/fusion.md).
 
-Development uses a **symlink**, not a copy: edit in the repo, then Stop → Run the add-in in Fusion. A copy breaks the core import — `impl/fusion360/FusionBrick/` reaches `impl/python/` two levels up, which does not exist outside the repo. `fusion-vendor` is the copy-safe path: it embeds `fusionbrick/` inside the add-in folder, and `_core()` prefers the embedded one.
+Development uses a **symlink**, not a copy: edit in the repo, then Stop → Run the add-in in Fusion. A copy breaks the core import — `plugins/fusion360/FusionBrick/` reaches `impl/python/` at `../../../impl/python`, which does not exist outside the repo. `fusion-vendor` is the copy-safe path: it embeds `fusionbrick/` inside the add-in folder, and `_core()` prefers the embedded one.
 
 `fusion-unlink` refuses to delete a real directory — only a symlink. Same for `fusion-link`, which will not clobber one.
 
 The AddIns path has spaces and Autodesk renamed it across versions ("Autodesk Fusion 360" → "Autodesk Fusion"), so it is resolved in the recipe's shell, not with `$(wildcard)`. Set `FUSION_ADDINS_DIR` to force one.
 
-**Architecture:** `impl/python/fusionbrick/` is the tool-agnostic core (params, geometry positions, rules) — plain stdlib, testable without any CAD. `impl/fusion360/` is the adapter. The add-in creates Fusion **User Parameters**: primitives as values, derived as **expressions** (`fb_grid = fb_hole_d + 2 * (fb_wall + fb_collar_w)`), so the derivation stays alive inside the document — changing `fb_wall` in Fusion's Parameters dialog rebuilds the part.
+**Architecture:** `impl/python/fusionbrick/` is the tool-agnostic core (params, geometry positions, rules) — plain stdlib, testable without any CAD. `plugins/fusion360/` is the adapter. The add-in creates Fusion **User Parameters**: primitives as values, derived as **expressions** (`fb_grid = fb_hole_d + 2 * (fb_wall + fb_collar_w)`), so the derivation stays alive inside the document — changing `fb_wall` in Fusion's Parameters dialog rebuilds the part.
 
 Fusion **caches Python modules** between Stop and Run — it reloads the entry file but not what it imports. `FusionBrick.py` imports inside `run()` after purging `sys.modules` of our own modules (never `adsk`), gated by `DEV_RELOAD`. Without it, edits appear to have no effect.
 
@@ -133,7 +133,7 @@ Inside the compiler the internal names are the older/OpenSCAD ones (`names.norma
 - `spec/parts/*.md` — intent, geometry rules, constraints per part
 - `spec/rules.md` — compatibility and design rules (Grid Law, face/edge interfaces)
 
-`impl/openscad/` translates spec to OpenSCAD. Future: `impl/fusion360/`, `impl/manual/`.
+`impl/openscad/` translates spec to OpenSCAD. CAD plugins (implementations of the standard inside other tools) live in `plugins/<tool>/` — today `plugins/fusion360/`.
 
 ### Make pipeline
 
