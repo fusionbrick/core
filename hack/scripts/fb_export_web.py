@@ -3,7 +3,7 @@
 fb_export_web — exporta uma montagem compilada para a web (three.js).
 
     python3 hack/scripts/fb_export_web.py examples/rover-orion/assembly.toml \\
-        ../fusionbrick-editor/apps/landing/public/assembly
+        ../studio/apps/landing/public/assembly
 
 Gera dois arquivos em <saída>/:
 
